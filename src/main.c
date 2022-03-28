@@ -11,6 +11,7 @@
 # define KEY_ESC 53
 
 # define TILE_SIZE 32
+# define PLAYER_SIZE 6
 
 # define ROWS 11
 # define COLS 15
@@ -48,7 +49,7 @@ void	game_init(t_game *game)
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
 	{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1},
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1},
 	{1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1},
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
@@ -85,13 +86,13 @@ void	draw_lines(t_game *game)
 	int	j;
 	
 	i = 0;
-	j = 0;
 	while (i < COLS)
 	{
 		draw_line(game, i * TILE_SIZE, 0, i * TILE_SIZE, HEIGHT);
 		i++;
 	}
 	draw_line(game, COLS * TILE_SIZE - 1, 0, COLS * TILE_SIZE - 1, HEIGHT);
+	j = 0;
 	while (j < ROWS)
 	{
 		draw_line(game, 0, j * TILE_SIZE, WIDTH, j * TILE_SIZE);
@@ -136,6 +137,30 @@ void	draw_rectangle(t_game *game, int x, int y)
 	
 }
 
+void	draw_player(t_game *game, int x, int y)
+{
+	int i;
+	int j;
+	
+	x *= TILE_SIZE;
+	x += TILE_SIZE / 2 - PLAYER_SIZE / 2;
+	y *= TILE_SIZE;
+	y += TILE_SIZE / 2 - PLAYER_SIZE / 2;
+	i = 0; 
+	while (i < PLAYER_SIZE)
+	{
+		j = 0;
+		while (j < PLAYER_SIZE)
+		{
+			// TILEサイズの左上から全部1pixelずつなぞっていく
+			game->img.data[(y + i) * WIDTH + x + j] = 0xFFFF00;
+			j++;
+		}
+		i++;
+	}
+	
+}
+
 void	draw_rectangles(t_game *game)
 {
 	int	i;
@@ -149,6 +174,8 @@ void	draw_rectangles(t_game *game)
 		{
 			if (game->map[i][j] == 1)
 				draw_rectangle(game, j, i);
+			else if (game->map[i][j] == 2)
+				draw_player(game, j, i);
 			j++;
 		}
 		i++;
@@ -187,7 +214,7 @@ int	main()
 	img_init(&game);
 	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close, &game);
-	
+
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
