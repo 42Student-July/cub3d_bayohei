@@ -142,9 +142,9 @@ void	draw_rectangles(t_game *game)
 	int	j;
 	
 	i = 0;
-	j = 0;
 	while (i < ROWS)
-	{
+	{	
+		j = 0;
 		while (j < COLS)
 		{
 			if (game->map[i][j] == 1)
