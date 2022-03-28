@@ -156,6 +156,20 @@ void	draw_rectangles(t_game *game)
 	
 }
 
+int		deal_key(int key_code, t_game *game)
+{
+	(void)game;
+	if (key_code == KEY_ESC)
+		exit(0);
+	return (0);
+}
+
+int 	close(t_game *game)
+{
+	(void)game;
+	exit(0);
+}
+
 int	main_loop(t_game *game)
 {
 	draw_rectangles(game);
@@ -171,6 +185,8 @@ int	main()
 	game_init(&game);
 	window_init(&game);
 	img_init(&game);
+	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &deal_key, &game);
+	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close, &game);
 	
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
