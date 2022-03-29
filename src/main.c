@@ -1,43 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
-
-#include "../lib/mlx/mlx.h"
-
-#define X_EVENT_KEY_PRESS 2
-#define X_EVENT_KEY_EXIT 17
-
-# define KEY_ESC 53
-
-# define TILE_SIZE 32
-# define PLAYER_SIZE 6
-
-# define ROWS 11
-# define COLS 15
-# define WIDTH COLS * TILE_SIZE
-# define HEIGHT ROWS * TILE_SIZE
-
-# define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
+/*   Updated: 2022/03/29 10:17:17 by mhirabay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 
-typedef struct s_img
-{
-	void	*img;
-	int		*data;
-	int		size_l;
-	int		bpp;
-	int		endian;
-}	t_img;
-
-typedef struct s_game
-{
-	void	*mlx;
-	void	*win;
-	t_img	img;
-	
-	int		map[ROWS][COLS];
-}	t_game;
+#include "cub3d.h"
 
 void	game_init(t_game *game)
 {	
@@ -80,6 +54,29 @@ void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
 }
 
 
+void	find_player_coord(t_game *game)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (i < ROWS)
+	{	
+		j = 0;
+		while (j < COLS)
+		{
+			if (game->map[i][j] == 2)
+			{
+				game->player.x = j;
+				game->player.y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 void	draw_lines(t_game *game)
 {
 	int	i;
@@ -119,7 +116,7 @@ void	draw_rectangle(t_game *game, int x, int y)
 {
 	int i;
 	int j;
-	
+
 	x *= TILE_SIZE;
 	y *= TILE_SIZE;
 	i = 0; 
@@ -134,14 +131,17 @@ void	draw_rectangle(t_game *game, int x, int y)
 		}
 		i++;
 	}
-	
 }
 
-void	draw_player(t_game *game, int x, int y)
+void	draw_player(t_game *game)
 {
 	int i;
 	int j;
-	
+	int	x;
+	int	y;
+	find_player_coord(game);
+	x = game->player.x;
+	y = game->player.y;
 	x *= TILE_SIZE;
 	x += TILE_SIZE / 2 - PLAYER_SIZE / 2;
 	y *= TILE_SIZE;
@@ -174,8 +174,6 @@ void	draw_rectangles(t_game *game)
 		{
 			if (game->map[i][j] == 1)
 				draw_rectangle(game, j, i);
-			else if (game->map[i][j] == 2)
-				draw_player(game, j, i);
 			j++;
 		}
 		i++;
@@ -193,6 +191,7 @@ void	draw_vision(t_game *game, int x, int y)
 	y += TILE_SIZE / 2;
 	i = 0; 
 	j = 0;
+	(void)game;
 }
 
 
@@ -220,6 +219,14 @@ int		deal_key(int key_code, t_game *game)
 	(void)game;
 	if (key_code == KEY_ESC)
 		exit(0);
+	if (key_code == KEY_W)
+		move_forward(game);
+	else if (key_code == KEY_A)
+		move_left(game);
+	else if (key_code == KEY_D)
+		move_right(game);
+	else if (key_code == KEY_S)
+		move_back(game);
 	return (0);
 }
 
@@ -233,7 +240,8 @@ int	main_loop(t_game *game)
 {
 	draw_rectangles(game);
 	draw_lines(game);
-	draw_vision_line(game);
+	draw_player(game);
+	// draw_vision_line(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }
