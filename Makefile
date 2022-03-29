@@ -6,13 +6,14 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/03/28 16:43:59 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/03/29 15:56:35 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	:= cub3D
 SRCDIR 	:= ./src/
-SRCNAME	:= main.c \
+SRCNAME	:=	main.c \
+			move.c \
 
 SRCS	:= $(addprefix $(SRCDIR), $(SRCNAME))
 OBJSDIR	:= ./obj/

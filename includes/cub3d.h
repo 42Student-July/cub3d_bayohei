@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/29 10:13:16 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:19:46 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
 
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
 
 # define TILE_SIZE 32
 # define PLAYER_SIZE 6
+# define PLAYER_MOVE_PIXEL 1
 
 # define ROWS 11
 # define COLS 15
@@ -43,6 +44,10 @@ typedef struct s_player
 {
 	int	x;
 	int	y;
+	int	x_draw_point;
+	int	y_draw_point;
+	int	x_draw_end;
+	int	y_draw_end;
 }	t_player;
 
 typedef struct s_img
@@ -59,8 +64,15 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_img		img;
-	t_player	player;
+	t_player	*player;
 	int		map[ROWS][COLS];
 }	t_game;
+
+void	move_forward(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+void	move_back(t_game *game);
+void	draw_player(t_game *game);
+void	find_player_coord(t_game *game);
 
 #endif

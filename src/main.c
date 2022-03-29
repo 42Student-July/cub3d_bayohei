@@ -6,10 +6,9 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/29 10:17:17 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:19:46 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
@@ -36,7 +35,7 @@ void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
 	double	deltaX;
 	double	deltaY;
 	double	step;
-	
+
 	deltaX = x2 - x1;
 	deltaY = y2 - y1;
 	// https://ichi.pro/ddasen-byoga-arugorizumu-209590219776463
@@ -53,22 +52,25 @@ void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
 	}
 }
 
-
-void	find_player_coord(t_game *game)
+void	find_player_coord(t_game *g)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < ROWS)
 	{	
 		j = 0;
 		while (j < COLS)
 		{
-			if (game->map[i][j] == 2)
+			if (g->map[i][j] == 2)
 			{
-				game->player.x = j;
-				game->player.y = i;
+				g->player->x = j * TILE_SIZE - TILE_SIZE / 2;
+				g->player->y = i * TILE_SIZE - TILE_SIZE / 2;
+				g->player->x_draw_point = g->player->x - PLAYER_SIZE / 2;
+				g->player->y_draw_point = g->player->y - PLAYER_SIZE / 2;
+				g->player->x_draw_end = g->player->x_draw_point + PLAYER_SIZE;
+				g->player->y_draw_end = g->player->y_draw_point + PLAYER_SIZE;
 				return ;
 			}
 			j++;
@@ -81,7 +83,7 @@ void	draw_lines(t_game *game)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < COLS)
 	{
@@ -98,7 +100,6 @@ void	draw_lines(t_game *game)
 	draw_line(game, 0, ROWS * TILE_SIZE - 1, WIDTH, ROWS * TILE_SIZE - 1);
 }
 
-
 void	window_init(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -111,11 +112,10 @@ void	img_init(t_game *game)
 	game->img.data = (int *)mlx_get_data_addr(game->img.img, &game->img.bpp, &game->img.size_l, &game->img.endian);
 }
 
-
 void	draw_rectangle(t_game *game, int x, int y)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	x *= TILE_SIZE;
 	y *= TILE_SIZE;
@@ -135,17 +135,11 @@ void	draw_rectangle(t_game *game, int x, int y)
 
 void	draw_player(t_game *game)
 {
-	int i;
-	int j;
-	int	x;
-	int	y;
+	int	i;
+	int	j;
+
+	game->player = (t_player *)malloc(sizeof(t_player));
 	find_player_coord(game);
-	x = game->player.x;
-	y = game->player.y;
-	x *= TILE_SIZE;
-	x += TILE_SIZE / 2 - PLAYER_SIZE / 2;
-	y *= TILE_SIZE;
-	y += TILE_SIZE / 2 - PLAYER_SIZE / 2;
 	i = 0; 
 	while (i < PLAYER_SIZE)
 	{
@@ -153,19 +147,18 @@ void	draw_player(t_game *game)
 		while (j < PLAYER_SIZE)
 		{
 			// TILEサイズの左上から全部1pixelずつなぞっていく
-			game->img.data[(y + i) * WIDTH + x + j] = 0xFFFF00;
+			game->img.data[(game->player->y_draw_point + i) * WIDTH + game->player->x_draw_point + j] = 0xFFFF00;
 			j++;
 		}
 		i++;
 	}
-	
 }
 
 void	draw_rectangles(t_game *game)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < ROWS)
 	{	
@@ -182,9 +175,9 @@ void	draw_rectangles(t_game *game)
 
 void	draw_vision(t_game *game, int x, int y)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	x *= TILE_SIZE;
 	x += TILE_SIZE / 2;
 	y *= TILE_SIZE;
@@ -194,12 +187,11 @@ void	draw_vision(t_game *game, int x, int y)
 	(void)game;
 }
 
-
 void	draw_vision_line(t_game *game)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < ROWS)
 	{	
@@ -214,9 +206,9 @@ void	draw_vision_line(t_game *game)
 	}
 }
 
-int		deal_key(int key_code, t_game *game)
+int	deal_key(int key_code, t_game *game)
 {
-	(void)game;
+	printf("key_code = %d\n", key_code);
 	if (key_code == KEY_ESC)
 		exit(0);
 	if (key_code == KEY_W)
@@ -230,7 +222,7 @@ int		deal_key(int key_code, t_game *game)
 	return (0);
 }
 
-int 	close(t_game *game)
+int	close(t_game *game)
 {
 	(void)game;
 	exit(0);
@@ -240,8 +232,7 @@ int	main_loop(t_game *game)
 {
 	draw_rectangles(game);
 	draw_lines(game);
-	draw_player(game);
-	// draw_vision_line(game);
+		// draw_vision_line(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }
@@ -249,13 +240,13 @@ int	main_loop(t_game *game)
 int	main()
 {
 	t_game	game;
-	
+
 	game_init(&game);
 	window_init(&game);
 	img_init(&game);
-	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &deal_key, &game);
+	draw_player(&game);
+	mlx_key_hook(game.win, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close, &game);
-
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
