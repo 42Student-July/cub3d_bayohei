@@ -180,7 +180,39 @@ void	draw_rectangles(t_game *game)
 		}
 		i++;
 	}
+}
+
+void	draw_vision(t_game *game, int x, int y)
+{
+	int i;
+	int j;
 	
+	x *= TILE_SIZE;
+	x += TILE_SIZE / 2;
+	y *= TILE_SIZE;
+	y += TILE_SIZE / 2;
+	i = 0; 
+	j = 0;
+}
+
+
+void	draw_vision_line(t_game *game)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (i < ROWS)
+	{	
+		j = 0;
+		while (j < COLS)
+		{
+			if (game->map[i][j] == 2)
+				draw_vision(game, j, i);
+			j++;
+		}
+		i++;
+	}
 }
 
 int		deal_key(int key_code, t_game *game)
@@ -201,6 +233,7 @@ int	main_loop(t_game *game)
 {
 	draw_rectangles(game);
 	draw_lines(game);
+	draw_vision_line(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }
