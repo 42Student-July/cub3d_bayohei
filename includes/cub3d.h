@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/29 19:19:46 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/30 10:25:17 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_player
 	int	y_draw_point;
 	int	x_draw_end;
 	int	y_draw_end;
+	int	x_center;
+	int	y_center;
 }	t_player;
 
 typedef struct s_img
@@ -74,5 +76,7 @@ void	move_right(t_game *game);
 void	move_back(t_game *game);
 void	draw_player(t_game *game);
 void	find_player_coord(t_game *game);
+void	reset_vision(t_game *g);
+void	draw_vision(t_game *g);
 
 #endif

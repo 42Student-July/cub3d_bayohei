@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/30 10:06:54 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:17:34 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,29 +173,6 @@ void	draw_rectangles(t_game *game)
 	}
 }
 
-void	draw_vision(t_game *game)
-{
-	
-}
-
-void	draw_vision_line(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < ROWS)
-	{	
-		j = 0;
-		while (j < COLS)
-		{
-			if (game->map[i][j] == 2)
-				draw_vision(game, j, i);
-			j++;
-		}
-		i++;
-	}
-}
 
 int	deal_key(int key_code, t_game *game)
 {

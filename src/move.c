@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:13 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/29 20:16:20 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/30 10:42:29 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	move_forward(t_game *g)
 	int j;
 
 	i = 0;
+	reset_vision(g);
 	g->player->y_draw_end -= PLAYER_MOVE_PIXEL;
 	while (i < PLAYER_SIZE)
 	{
@@ -38,6 +39,8 @@ void	move_forward(t_game *g)
 		}
 		i++;
 	}
+	g->player->y -= PLAYER_MOVE_PIXEL;
+	draw_vision(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->img.img, 0, 0);
 }
 
@@ -47,6 +50,7 @@ void	move_left(t_game *g)
 	int	j;
 
 	i = 0;
+	reset_vision(g);
 	g->player->x_draw_end -= PLAYER_MOVE_PIXEL;
 	while (i < PLAYER_SIZE)
 	{
@@ -65,6 +69,8 @@ void	move_left(t_game *g)
 		}
 		i++;
 	}
+	g->player->x -= PLAYER_MOVE_PIXEL;
+	draw_vision(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->img.img, 0, 0);
 }
 
@@ -74,6 +80,7 @@ void	move_right(t_game *g)
 	int	j;
 
 	i = 0;
+	reset_vision(g);
 	while (i < PLAYER_SIZE)
 	{
 		g->img.data[(g->player->y_draw_point + i) * WIDTH + g->player->x_draw_point] = 0x0;
@@ -92,6 +99,8 @@ void	move_right(t_game *g)
 		}
 		i++;
 	}
+	g->player->x += PLAYER_MOVE_PIXEL;
+	draw_vision(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->img.img, 0, 0);
 }
 
@@ -101,6 +110,7 @@ void	move_back(t_game *g)
 	int	j;
 
 	i = 0;
+	reset_vision(g);
 	while (i < PLAYER_SIZE)
 	{
 		g->img.data[(g->player->y_draw_point) * WIDTH + g->player->x_draw_point + i] = 0x0;
@@ -119,5 +129,7 @@ void	move_back(t_game *g)
 		}
 		i++;
 	}
+	g->player->y += PLAYER_MOVE_PIXEL;
+	draw_vision(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->img.img, 0, 0);
 }
