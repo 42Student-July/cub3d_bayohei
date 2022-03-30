@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:13 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/29 19:53:08 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/29 20:16:20 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ void	move_right(t_game *g)
 	int	j;
 
 	i = 0;
-	g->player->x_draw_end -= PLAYER_MOVE_PIXEL;
 	while (i < PLAYER_SIZE)
 	{
-		g->img.data[(g->player->y_draw_point + i) * WIDTH + g->player->x_draw_end] = 0x0;
+		g->img.data[(g->player->y_draw_point + i) * WIDTH + g->player->x_draw_point] = 0x0;
 		i++;
 	}
+	g->player->x_draw_point += PLAYER_MOVE_PIXEL;
 	i = 0;
-	g->player->x_draw_point -= PLAYER_MOVE_PIXEL;
+	g->player->x_draw_end += PLAYER_MOVE_PIXEL;
 	while (i < PLAYER_SIZE)
 	{
 		j = 0;
@@ -95,8 +95,29 @@ void	move_right(t_game *g)
 	mlx_put_image_to_window(g->mlx, g->win, g->img.img, 0, 0);
 }
 
-void	move_back(t_game *game)
+void	move_back(t_game *g)
 {
-	(void)game;
-	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < PLAYER_SIZE)
+	{
+		g->img.data[(g->player->y_draw_point) * WIDTH + g->player->x_draw_point + i] = 0x0;
+		i++;
+	}
+	g->player->y_draw_point += PLAYER_MOVE_PIXEL;
+	i = 0;
+	g->player->y_draw_end += PLAYER_MOVE_PIXEL;
+	while (i < PLAYER_SIZE)
+	{
+		j = 0;
+		while (j < PLAYER_SIZE)
+		{
+			g->img.data[(g->player->y_draw_point + i) * WIDTH + g->player->x_draw_point + j] = 0xFF0000;
+			j++;
+		}
+		i++;
+	}
+	mlx_put_image_to_window(g->mlx, g->win, g->img.img, 0, 0);
 }

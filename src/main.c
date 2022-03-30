@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/29 19:19:46 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/30 10:06:54 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,18 +173,9 @@ void	draw_rectangles(t_game *game)
 	}
 }
 
-void	draw_vision(t_game *game, int x, int y)
+void	draw_vision(t_game *game)
 {
-	int	i;
-	int	j;
-
-	x *= TILE_SIZE;
-	x += TILE_SIZE / 2;
-	y *= TILE_SIZE;
-	y += TILE_SIZE / 2;
-	i = 0; 
-	j = 0;
-	(void)game;
+	
 }
 
 void	draw_vision_line(t_game *game)
@@ -245,6 +236,7 @@ int	main()
 	window_init(&game);
 	img_init(&game);
 	draw_player(&game);
+	draw_vision(&game);
 	mlx_key_hook(game.win, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close, &game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
