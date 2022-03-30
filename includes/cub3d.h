@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/30 10:25:17 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:01:54 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void	draw_player(t_game *game);
 void	find_player_coord(t_game *game);
 void	reset_vision(t_game *g);
 void	draw_vision(t_game *g);
+int		to_coord(double x, double y);
 
 #endif
