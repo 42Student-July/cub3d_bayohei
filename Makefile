@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/03/30 10:27:02 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/03/30 16:33:13 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ CC		:= gcc
 CFLAGS	:= -Wall -Werror -Wextra
 INC		:= -I ./includes
 RM		:= rm -rf
+DEBUG	:= -g -fsanitize=address
+
 
 UNAME := $(shell uname)
 
@@ -48,5 +50,9 @@ clean:
 fclean: clean
 	${RM} ${NAME} 
 re:	fclean all
+
+.PHONY: debug
+debug:	CFLAGS += $(DEBUG)
+debug:	re
 
 .PHONY: all clean fclean re
