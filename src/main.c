@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/30 16:17:34 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:54:02 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void	draw_rectangle(t_game *game, int x, int y)
 		{
 			// TILEサイズの左上から全部1pixelずつなぞっていく
 			game->img.data[(y + i) * WIDTH + x + j] = 0xFFFFFF;
+			// printf("(y + i) * WIDTH + x + j = %d\n",(y + i) * WIDTH + x + j );
 			j++;
 		}
 		i++;
