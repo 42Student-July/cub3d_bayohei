@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/30 17:54:02 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:12:12 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	find_player_coord(t_game *g)
 				g->player->y_draw_point = g->player->y - PLAYER_SIZE / 2;
 				g->player->x_draw_end = g->player->x_draw_point + PLAYER_SIZE;
 				g->player->y_draw_end = g->player->y_draw_point + PLAYER_SIZE;
+				g->player->fov_min = FOV_MIN_DEGREE;
+				g->player->fov_max = FOV_MAX_DEGREE;
 				return ;
 			}
 			j++;
@@ -140,6 +142,13 @@ void	draw_player(t_game *game)
 	int	j;
 
 	game->player = (t_player *)malloc(sizeof(t_player));
+	game->player->is_collide = (bool *)malloc(sizeof(bool) * (FOV_MAX_DEGREE - FOV_MIN_DEGREE + 1));
+	i = 0;
+	while (i < FOV_MAX_DEGREE - FOV_MIN_DEGREE + 1)
+	{
+		game->player->is_collide[i] = false;
+		i++;
+	}
 	find_player_coord(game);
 	i = 0; 
 	while (i < PLAYER_SIZE)
@@ -174,7 +183,6 @@ void	draw_rectangles(t_game *game)
 	}
 }
 
-
 int	deal_key(int key_code, t_game *game)
 {
 	printf("key_code = %d\n", key_code);
@@ -188,6 +196,10 @@ int	deal_key(int key_code, t_game *game)
 		move_right(game);
 	else if (key_code == KEY_S)
 		move_back(game);
+	if (key_code == KEY_LEFT_ARROW)
+		look_left(game);
+	else if (key_code == KEY_RIGHT_ARROW)
+		look_right(game);
 	return (0);
 }
 
@@ -201,8 +213,15 @@ int	main_loop(t_game *game)
 {
 	draw_rectangles(game);
 	draw_lines(game);
-		// draw_vision_line(game);
+	draw_vision(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+	return (0);
+}
+
+int	deal_mouse(int mouse_code, t_game *game)
+{
+	(void)game;
+	printf("mouse_code = %d\n", mouse_code);
 	return (0);
 }
 
@@ -214,8 +233,8 @@ int	main()
 	window_init(&game);
 	img_init(&game);
 	draw_player(&game);
-	draw_vision(&game);
 	mlx_key_hook(game.win, &deal_key, &game);
+	// mlx_mouse_hook(game.win, &deal_mouse, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close, &game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);

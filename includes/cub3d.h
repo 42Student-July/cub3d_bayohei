@@ -6,13 +6,14 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/30 17:01:54 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:52:39 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
@@ -28,10 +29,15 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_LEFT_ARROW 65361
+# define KEY_RIGHT_ARROW 65363
 
 # define TILE_SIZE 32
 # define PLAYER_SIZE 6
 # define PLAYER_MOVE_PIXEL 1
+# define PLAYER_LOOK_DEGREE 1
+# define FOV_MIN_DEGREE -45
+# define FOV_MAX_DEGREE 45
 
 # define ROWS 11
 # define COLS 15
@@ -48,8 +54,9 @@ typedef struct s_player
 	int	y_draw_point;
 	int	x_draw_end;
 	int	y_draw_end;
-	int	x_center;
-	int	y_center;
+	int	fov_min;
+	int	fov_max;
+	bool	*is_collide;
 }	t_player;
 
 typedef struct s_img
@@ -74,10 +81,19 @@ void	move_forward(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
 void	move_back(t_game *game);
+
 void	draw_player(t_game *game);
 void	find_player_coord(t_game *game);
+
+// vision.c
 void	reset_vision(t_game *g);
 void	draw_vision(t_game *g);
+void	look_left(t_game *g);
+void	look_right(t_game *g);
+
+// cub_utils.c
 int		to_coord(double x, double y);
+int		get_max_coord_size();
+
 
 #endif
