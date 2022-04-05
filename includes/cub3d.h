@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/05 21:18:38 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/05 22:06:51 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,9 @@ void	reset_vision(t_game *g);
 void	draw_vision(t_game *g);
 void	look_left(t_game *g);
 void	look_right(t_game *g);
+void	reset_all_rays(t_game *g);
+void	reset_vision(t_game *g);
+void	resetRay(t_game *g, double rayAngle);
 
 // cub_utils.c
 int		to_coord(double x, double y);

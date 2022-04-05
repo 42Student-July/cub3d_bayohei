@@ -6,44 +6,27 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/05 21:48:05 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/05 22:03:35 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cub3d.h"
 
+void	reset_all_rays(t_game *g)
+{
+	double	rayAngle;
+
+	rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
+	while (rayAngle < FOV_ANGLE / 2)
+	{
+		resetRay(g, rayAngle);
+		rayAngle += 0.1 * M_PI / 180;
+	}
+}
+
 void	reset_vision(t_game *g)
 {
-	int		i;
-	int		length;
-	double	x1;
-	double	y1;
-	int		fov_min;
-	int		ret;
-
-	i = 0;
-	i = g->player->x + 1;
-	length = 1;
-	while (i < WIDTH)
-	{
-		g->img.data[TO_COORD(i, g->player->y)] = 0x0;
-		fov_min = g->player->fov_min;
-		while (fov_min <= g->player->fov_max)
-		{
-			x1 = length * cos(fov_min * M_PI / 180);
-			y1 = length * sin(fov_min * M_PI / 180);
-			ret = to_coord(g->player->x + x1, g->player->y + y1);
-			if (ret < 0 || ret >= get_max_coord_size())
-			{
-				fov_min++;
-				continue ;
-			}
-			g->img.data[ret] = 0x0;
-			fov_min++;
-		}
-		length++;
-		i++;
-	}
+	reset_all_rays(g);
 }
 
 void	find_horizontal_intersection(t_game *g, int ray_angle)
