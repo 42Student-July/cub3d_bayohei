@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/31 16:52:39 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:18:38 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <string.h>
+# include <float.h>
 
 # include "../lib/mlx/mlx.h"
 
@@ -36,13 +37,14 @@
 # define PLAYER_SIZE 6
 # define PLAYER_MOVE_PIXEL 1
 # define PLAYER_LOOK_DEGREE 1
-# define FOV_MIN_DEGREE -45
-# define FOV_MAX_DEGREE 45
+
+# define NUM_RAYS WIDTH
 
 # define ROWS 11
 # define COLS 15
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
+# define FOV_ANGLE (60 * (M_PI / 180))
 
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 
@@ -56,8 +58,17 @@ typedef struct s_player
 	int	y_draw_end;
 	int	fov_min;
 	int	fov_max;
+	double	rotate_angle;
 	bool	*is_collide;
 }	t_player;
+
+typedef struct s_config
+{
+	double	fov_angle;
+	int		width;
+	int		height;
+} t_config;
+
 
 typedef struct s_img
 {
@@ -74,6 +85,7 @@ typedef struct s_game
 	void		*win;
 	t_img		img;
 	t_player	*player;
+	// t_conf		*config;
 	int		map[ROWS][COLS];
 }	t_game;
 
@@ -84,6 +96,9 @@ void	move_back(t_game *game);
 
 void	draw_player(t_game *game);
 void	find_player_coord(t_game *game);
+void	draw_line(t_game *game, double x1, double y1, double x2, double y2);
+void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color);
+void	print_wall(t_game *g);
 
 // vision.c
 void	reset_vision(t_game *g);

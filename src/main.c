@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/03/31 16:12:12 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:52:42 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,33 @@ void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
 	deltaY /= step;
 	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)
 	{
+		// printf("x1 = %lf\n", x1);
+		// printf("y1 = %lf\n", y1);
 		game->img.data[TO_COORD(x1, y1)] = 0xB3B3B3;
+		x1 += deltaX;
+		y1 += deltaY;
+	}
+}
+
+void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color)
+{
+	double	deltaX;
+	double	deltaY;
+	double	step;
+
+	deltaX = x2 - x1;
+	deltaY = y2 - y1;
+	// https://ichi.pro/ddasen-byoga-arugorizumu-209590219776463
+	// 傾きが |m| が 1より大きいかそれ以下かを示している
+	step = (fabs(deltaX) > fabs(deltaY)) ? fabs(deltaX) : fabs(deltaY);
+	// どちらかが1に限りなく近い数値になる。
+	deltaX /= step;
+	deltaY /= step;
+	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)
+	{
+		// printf("x1 = %lf\n", x1);
+		// printf("y1 = %lf\n", y1);
+		game->img.data[TO_COORD(x1, y1)] = color;
 		x1 += deltaX;
 		y1 += deltaY;
 	}
@@ -71,8 +97,7 @@ void	find_player_coord(t_game *g)
 				g->player->y_draw_point = g->player->y - PLAYER_SIZE / 2;
 				g->player->x_draw_end = g->player->x_draw_point + PLAYER_SIZE;
 				g->player->y_draw_end = g->player->y_draw_point + PLAYER_SIZE;
-				g->player->fov_min = FOV_MIN_DEGREE;
-				g->player->fov_max = FOV_MAX_DEGREE;
+				g->player->rotate_angle = 0;
 				return ;
 			}
 			j++;
@@ -142,13 +167,7 @@ void	draw_player(t_game *game)
 	int	j;
 
 	game->player = (t_player *)malloc(sizeof(t_player));
-	game->player->is_collide = (bool *)malloc(sizeof(bool) * (FOV_MAX_DEGREE - FOV_MIN_DEGREE + 1));
 	i = 0;
-	while (i < FOV_MAX_DEGREE - FOV_MIN_DEGREE + 1)
-	{
-		game->player->is_collide[i] = false;
-		i++;
-	}
 	find_player_coord(game);
 	i = 0; 
 	while (i < PLAYER_SIZE)
@@ -213,7 +232,6 @@ int	main_loop(t_game *game)
 {
 	draw_rectangles(game);
 	draw_lines(game);
-	draw_vision(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }
@@ -233,6 +251,7 @@ int	main()
 	window_init(&game);
 	img_init(&game);
 	draw_player(&game);
+	draw_vision(&game);
 	mlx_key_hook(game.win, &deal_key, &game);
 	// mlx_mouse_hook(game.win, &deal_mouse, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close, &game);
