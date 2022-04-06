@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/06 16:15:58 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:16:21 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	reset_all_rays(t_game *g)
 {
-	double	rayAnogle;
+	double	rayAngle;
 
 	rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
 	while (rayAngle < FOV_ANGLE / 2)
