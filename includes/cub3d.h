@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/06 20:40:05 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/06 21:03:23 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV_ANGLE (60 * (M_PI / 180))
 # define NUM_RAYS WIDTH
+# define MINIMAP_SCALE 0.2
 
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 
@@ -78,8 +79,7 @@ typedef struct s_config
 	double	fov_angle;
 	int		width;
 	int		height;
-} t_config;
-
+}	t_config;
 
 typedef struct s_img
 {
@@ -96,7 +96,7 @@ typedef struct s_game
 	void		*win;
 	t_img		img;
 	t_player	*player;
-	// t_conf		*config;
+	t_config	*config;
 	int		map[ROWS][COLS];
 }	t_game;
 
@@ -123,6 +123,5 @@ void	clear_all_rays(t_game *g);
 // cub_utils.c
 int		to_coord(double x, double y);
 int		get_max_coord_size();
-
 
 #endif
