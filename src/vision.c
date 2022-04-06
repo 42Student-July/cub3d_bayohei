@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/06 18:06:30 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/06 20:41:51 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ double	normalizeAngle(double angle)
 
 int mapHasWallAt(t_game *g, double x, double y) {
 	if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
-		// printf("kita\n");
 		return true;
 	}
 	int mapGridIndexX = (int)floor(x / TILE_SIZE);
@@ -52,9 +51,6 @@ int mapHasWallAt(t_game *g, double x, double y) {
 	
 	if (g->map[mapGridIndexY][mapGridIndexX] == 1)
 	{
-		// print_wall(g);
-		// printf("mapGridIndexX = %d\n", mapGridIndexX);
-		// printf("mapGridIndexY = %d\n", mapGridIndexY);
 		return true;
 	}
 	return false;
@@ -95,8 +91,6 @@ void	castRay(t_game *g, t_ray *ray)
 	xstep *= (isRayFacingRight && xstep < 0) ? -1 : 1;
 	double nextHorzTouchX = xintercept;
 	double nextHorzTouchY = yintercept;
-	// printf("nextHorzTouchX = %lf\n", nextHorzTouchX);
-	// printf("nextHorzTouchY = %lf\n", nextHorzTouchY);
 	
 	// Increment xstep and ystep until we find a wall
 	while (nextHorzTouchX >= 0 && nextHorzTouchX <= WIDTH && nextHorzTouchY >= 0 && nextHorzTouchY <= HEIGHT) {
@@ -108,8 +102,6 @@ void	castRay(t_game *g, t_ray *ray)
 			horzWallHitX = nextHorzTouchX;
 			horzWallHitY = nextHorzTouchY;
 			horzWallContent = g->map[(int)floor(yToCheck / TILE_SIZE)][(int)floor(xToCheck / TILE_SIZE)];
-			// printf("horzWallHitX = %lf\n", horzWallHitX);
-			// printf("horzWallHitY = %lf\n", horzWallHitY);
 			foundHorzWallHit = true;
 			break;
 		} else {
@@ -160,7 +152,6 @@ void	castRay(t_game *g, t_ray *ray)
 			nextVertTouchY += ystep;
 		}
 	}
-	// printf("horzWallHitX = %lf\n", horzWallHitX);
 	double horzHitDistance = foundHorzWallHit
 		? distanceBetweenPoints(g->player->x, g->player->y, horzWallHitX, horzWallHitY)
 		: FLT_MAX;
