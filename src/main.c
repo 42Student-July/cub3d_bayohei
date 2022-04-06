@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/06 20:40:22 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/06 21:02:47 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
 	deltaY /= step;
 	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)
 	{
-		// printf("x1 = %lf\n", x1);
-		// printf("y1 = %lf\n", y1);
 		game->img.data[TO_COORD(x1, y1)] = 0xB3B3B3;
 		x1 += deltaX;
 		y1 += deltaY;
@@ -70,8 +68,6 @@ void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double 
 	deltaY /= step;
 	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)
 	{
-		// printf("x1 = %lf\n", x1);
-		// printf("y1 = %lf\n", y1);
 		game->img.data[TO_COORD(x1, y1)] = color;
 		x1 += deltaX;
 		y1 += deltaY;
@@ -154,7 +150,6 @@ void	draw_rectangle(t_game *game, int x, int y)
 		{
 			// TILEサイズの左上から全部1pixelずつなぞっていく
 			game->img.data[(y + i) * WIDTH + x + j] = 0xFFFFFF;
-			// printf("(y + i) * WIDTH + x + j = %d\n",(y + i) * WIDTH + x + j );
 			j++;
 		}
 		i++;

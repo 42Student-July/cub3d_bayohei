@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/06 20:41:51 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/06 21:00:51 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int mapHasWallAt(t_game *g, double x, double y) {
 	}
 	int mapGridIndexX = (int)floor(x / TILE_SIZE);
 	int mapGridIndexY = (int)floor(y / TILE_SIZE);
-	
 	if (g->map[mapGridIndexY][mapGridIndexX] == 1)
 	{
 		return true;
