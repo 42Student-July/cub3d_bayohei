@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/05 21:52:42 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/06 20:40:22 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ void	draw_player(t_game *game)
 	int	j;
 
 	game->player = (t_player *)malloc(sizeof(t_player));
+	game->player->ray = (t_ray **)malloc(sizeof(t_ray *) * NUM_RAYS);
 	i = 0;
 	find_player_coord(game);
 	i = 0; 

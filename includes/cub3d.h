@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/06 16:15:30 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/06 20:40:05 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # define KEY_LEFT_ARROW 65361
 # define KEY_RIGHT_ARROW 65363
 
+# define YELLOW 0xFFFF00
+# define BLACK 0x0
+
 # define TILE_SIZE 32
 # define PLAYER_SIZE 6
 # define PLAYER_MOVE_PIXEL 1
@@ -47,6 +50,14 @@
 
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 
+typedef struct s_ray
+{
+	double	wall_hit_x;
+	double	wall_hit_y;
+	double	dist;
+	double	angle;
+}	t_ray;
+
 typedef struct s_player
 {
 	int	x;
@@ -59,6 +70,7 @@ typedef struct s_player
 	int	fov_max;
 	double	rotate_angle;
 	bool	*is_collide;
+	t_ray	**ray;
 }	t_player;
 
 typedef struct s_config
@@ -105,8 +117,8 @@ void	draw_vision(t_game *g);
 void	look_left(t_game *g);
 void	look_right(t_game *g);
 void	reset_all_rays(t_game *g);
-void	reset_vision(t_game *g);
-void	resetRay(t_game *g, double rayAngle);
+void	clear_vision(t_game *g);
+void	clear_all_rays(t_game *g);
 
 // cub_utils.c
 int		to_coord(double x, double y);
