@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/05 22:06:51 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:15:30 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@
 # define PLAYER_MOVE_PIXEL 1
 # define PLAYER_LOOK_DEGREE 1
 
-# define NUM_RAYS WIDTH
-
 # define ROWS 11
 # define COLS 15
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV_ANGLE (60 * (M_PI / 180))
+# define NUM_RAYS WIDTH
 
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 
