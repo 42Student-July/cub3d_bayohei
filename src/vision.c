@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/06 21:00:51 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:21:53 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ void	draw_vision(t_game *g)
 
 void	look_left(t_game *g)
 {
-	clear_all_rays(g);
+	clear_3d(g);
 	g->player->rotate_angle -= 5 * FOV_ANGLE / (NUM_RAYS);
 	cast_all_rays(g);
 	render_all_rays(g);
@@ -246,7 +246,7 @@ void	look_left(t_game *g)
 
 void	look_right(t_game *g)
 {
-	clear_all_rays(g);
+	clear_3d(g);
 	g->player->rotate_angle += 5 * FOV_ANGLE / (NUM_RAYS);
 	cast_all_rays(g);
 	render_all_rays(g);

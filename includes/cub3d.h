@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/06 21:03:23 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/07 21:02:30 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@
 # define PLAYER_MOVE_PIXEL 1
 # define PLAYER_LOOK_DEGREE 1
 
-# define ROWS 11
+# define MINIMAP_SCALE 0.5
+# define ROWS 11 
 # define COLS 15
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV_ANGLE (60 * (M_PI / 180))
 # define NUM_RAYS WIDTH
-# define MINIMAP_SCALE 0.2
-
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 
 typedef struct s_ray
@@ -110,6 +109,11 @@ void	find_player_coord(t_game *game);
 void	draw_line(t_game *game, double x1, double y1, double x2, double y2);
 void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color);
 void	print_wall(t_game *g);
+int		main_loop(t_game *game);
+
+// render.c
+void	generate_3d(t_game *g);
+void	clear_3d(t_game *g);
 
 // vision.c
 void	reset_vision(t_game *g);
@@ -119,8 +123,10 @@ void	look_right(t_game *g);
 void	reset_all_rays(t_game *g);
 void	clear_vision(t_game *g);
 void	clear_all_rays(t_game *g);
+void	cast_all_rays(t_game *g);
 
 // cub_utils.c
+int		to_coord_minimap(double x, double y);
 int		to_coord(double x, double y);
 int		get_max_coord_size();
 

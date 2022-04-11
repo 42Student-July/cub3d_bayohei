@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/06 21:02:47 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:36:25 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
 	deltaY /= step;
 	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)
 	{
-		game->img.data[TO_COORD(x1, y1)] = 0xB3B3B3;
+		game->img.data[to_coord_minimap(x1, y1)] = 0xB3B3B3;
 		x1 += deltaX;
 		y1 += deltaY;
 	}
@@ -68,7 +68,7 @@ void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double 
 	deltaY /= step;
 	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)
 	{
-		game->img.data[TO_COORD(x1, y1)] = color;
+		game->img.data[to_coord_minimap(x1, y1)] = color;
 		x1 += deltaX;
 		y1 += deltaY;
 	}
@@ -135,7 +135,7 @@ void	img_init(t_game *game)
 	game->img.data = (int *)mlx_get_data_addr(game->img.img, &game->img.bpp, &game->img.size_l, &game->img.endian);
 }
 
-void	draw_rectangle(t_game *game, int x, int y)
+void	draw_wall(t_game *game, int x, int y)
 {
 	int	i;
 	int	j;
@@ -149,7 +149,28 @@ void	draw_rectangle(t_game *game, int x, int y)
 		while (j < TILE_SIZE)
 		{
 			// TILEサイズの左上から全部1pixelずつなぞっていく
-			game->img.data[(y + i) * WIDTH + x + j] = 0xFFFFFF;
+			game->img.data[to_coord_minimap(x + j, y + i)] = 0xFFFFFF;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	draw_ground(t_game *game, int x, int y)
+{
+	int	i;
+	int	j;
+
+	x *= TILE_SIZE;
+	y *= TILE_SIZE;
+	i = 0; 
+	while (i < TILE_SIZE)
+	{
+		j = 0;
+		while (j < TILE_SIZE)
+		{
+			// TILEサイズの左上から全部1pixelずつなぞっていく
+			game->img.data[to_coord_minimap(x + j, y + i)] = 0xC0C0C0;
 			j++;
 		}
 		i++;
@@ -165,14 +186,14 @@ void	draw_player(t_game *game)
 	game->player->ray = (t_ray **)malloc(sizeof(t_ray *) * NUM_RAYS);
 	i = 0;
 	find_player_coord(game);
-	i = 0; 
+	i = 0;
 	while (i < PLAYER_SIZE)
 	{
 		j = 0;
 		while (j < PLAYER_SIZE)
 		{
 			// TILEサイズの左上から全部1pixelずつなぞっていく
-			game->img.data[(game->player->y_draw_point + i) * WIDTH + game->player->x_draw_point + j] = 0xFFFF00;
+			game->img.data[to_coord_minimap(game->player->x_draw_point + j, game->player->y_draw_point + i)] = 0xFFFF00;
 			j++;
 		}
 		i++;
@@ -191,7 +212,9 @@ void	draw_rectangles(t_game *game)
 		while (j < COLS)
 		{
 			if (game->map[i][j] == 1)
-				draw_rectangle(game, j, i);
+				draw_wall(game, j, i);
+			else
+				draw_ground(game, j, i);
 			j++;
 		}
 		i++;
@@ -226,7 +249,11 @@ int	close(t_game *game)
 
 int	main_loop(t_game *game)
 {
+	// clear_3d(game);
+	cast_all_rays(game);
+	generate_3d(game);
 	draw_rectangles(game);
+	draw_vision(game);
 	draw_lines(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
@@ -248,9 +275,12 @@ int	main()
 	img_init(&game);
 	draw_player(&game);
 	draw_vision(&game);
+	draw_rectangles(&game);
+
 	mlx_key_hook(game.win, &deal_key, &game);
 	// mlx_mouse_hook(game.win, &deal_mouse, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close, &game);
+	// main_loop(&game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
