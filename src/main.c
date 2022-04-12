@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/07 17:36:25 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:35:16 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,9 +278,7 @@ int	main()
 	draw_rectangles(&game);
 
 	mlx_key_hook(game.win, &deal_key, &game);
-	// mlx_mouse_hook(game.win, &deal_mouse, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close, &game);
-	// main_loop(&game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
