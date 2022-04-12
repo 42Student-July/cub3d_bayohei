@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/07 15:49:16 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/12 22:14:01 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCNAME	:=	main.c \
 			cub_utils.c \
 			debug.c \
 			render.c \
+			error_handling.c \
 
 SRCS	:= $(addprefix $(SRCDIR), $(SRCNAME))
 OBJSDIR	:= ./obj/
@@ -28,7 +29,8 @@ CFLAGS	:= -Wall -Werror -Wextra
 INC		:= -I ./includes
 RM		:= rm -rf
 DEBUG	:= -g -fsanitize=address
-
+LDFLAGS := -Llib/gnl -Llib/libft
+LIBS 	:= -lgnl -lft
 
 UNAME := $(shell uname)
 
@@ -38,19 +40,35 @@ else
 	OPT_MLX = -Ilib/mlx -Llib/mlx -lmlx -lXext -lX11 -lm
 endif
 
-all: $(NAME)
+all: lib ${NAME}
+
+lib : dummy
+	make -C lib/gnl
+	make -C lib/mlx
+	make -C lib/libft
+
+.PHONY: dummy
+
+dummy:
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(INC) $(OPT_MLX) $^ -o $@
+	$(CC) $(CFLAGS) $(INC)  ${LDFLAGS} ${LIBS} $(OPT_MLX) $^ -o $@
 
 $(OBJSDIR)%.o : $(SRCDIR)%.c
 	@if [ ! -d $(OBJSDIR) ]; then mkdir $(OBJSDIR); fi
 	${CC} ${CFLAGS} $(INC) -c $< -o $@
 
-clean: 
+clean:
+	make clean -C lib/gnl
+	make clean -C lib/libft
+	make clean -C lib/mlx
 	$(RM) $(OBJSDIR)
 
 fclean: clean
+	make fclean -C lib/gnl
+	make fclean -C lib/libft
+	make clean -C lib/mlx
+	${RM} lib/mlx/libmlx_Linux.a
 	${RM} ${NAME} 
 re:	fclean all
 
