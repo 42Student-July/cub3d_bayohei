@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:38:10 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/07 15:43:12 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:02:01 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,3 @@ int	to_coord(double x, double y)
 	return (ret);
 }
 
-int	get_max_coord_size()
-{
-	return (HEIGHT * WIDTH);
-}
