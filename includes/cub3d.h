@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/12 17:04:33 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:09:34 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 # include <stdlib.h>
 # include <math.h>
 # include <string.h>
+# include <fcntl.h>
 # include <float.h>
 
 # include "../lib/mlx/mlx.h"
 # include "../lib/libft/libft.h"
+# include "error_msg.h"
 
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
@@ -129,6 +131,9 @@ void	cast_all_rays(t_game *g);
 // cub_utils.c
 int		to_coord_minimap(double x, double y);
 int		to_coord(double x, double y);
-int		get_max_coord_size();
+
+// error_handling.c
+void	exit_with_err_msg(char *msg);
+
 
 #endif

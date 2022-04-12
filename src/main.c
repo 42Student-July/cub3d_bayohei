@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/11 21:35:16 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:24:25 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,12 +241,6 @@ int	deal_key(int key_code, t_game *game)
 	return (0);
 }
 
-int	close(t_game *game)
-{
-	(void)game;
-	exit(0);
-}
-
 int	main_loop(t_game *game)
 {
 	// clear_3d(game);
@@ -266,13 +260,27 @@ int	deal_mouse(int mouse_code, t_game *game)
 	return (0);
 }
 
-int	main()
+void	read_cub_asset(char *filename, t_game *game)
+{
+	int	fd;
+
+	(void)game;
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		exit_with_err_msg(READ_FILE_ERROR);
+	
+}
+
+
+int	main(int argc, char *argv[])
 {
 	t_game	game;
 
+	(void)argc;
 	game_init(&game);
 	window_init(&game);
 	img_init(&game);
+	read_cub_asset(argv[1], &game);
 	draw_player(&game);
 	draw_vision(&game);
 	draw_rectangles(&game);
