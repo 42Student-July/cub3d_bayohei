@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/12 17:24:25 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/14 21:40:15 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,13 +262,13 @@ int	deal_mouse(int mouse_code, t_game *game)
 
 void	read_cub_asset(char *filename, t_game *game)
 {
-	int	fd;
+	// int	fd;
 
 	(void)game;
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		exit_with_err_msg(READ_FILE_ERROR);
-	
+	(void)filename;
+	// fd = open(filename, O_RDONLY);
+	// if (fd == -1)
+	// 	exit_with_err_msg(READ_FILE_ERROR);
 }
 
 
