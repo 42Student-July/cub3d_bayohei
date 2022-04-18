@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 16:45:43 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:59:05 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ void	render_vision(t_game *g);
 void	look_left(t_game *g);
 void	look_right(t_game *g);
 void	reset_all_rays(t_game *g);
-void	clear_vision(t_game *g);
 void	clear_all_rays(t_game *g);
 void	cast_all_rays(t_game *g);
 

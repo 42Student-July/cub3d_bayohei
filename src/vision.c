@@ -6,16 +6,11 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 16:46:13 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:59:13 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cub3d.h"
-
-void	clear_vision(t_game *g)
-{
-	clear_all_rays(g);
-}
 
 void	find_horizontal_intersection(t_game *g, int ray_angle)
 {
