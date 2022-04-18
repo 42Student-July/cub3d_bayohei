@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vision.c                                           :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 17:05:19 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:24:03 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	find_horizontal_intersection(t_game *g, int ray_angle)
 	ystep = TILE_SIZE;
 }
 
-double	normalizeAngle(double angle)
+double	normalize_angle(double angle)
 {
 	if (angle < 0)
 	{
@@ -37,7 +37,7 @@ double	normalizeAngle(double angle)
 	return (angle);
 }
 
-int mapHasWallAt(t_game *g, double x, double y) {
+int map_has_wall_at(t_game *g, double x, double y) {
 	if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
 		return true;
 	}
@@ -50,13 +50,13 @@ int mapHasWallAt(t_game *g, double x, double y) {
 	return false;
 }
 
-double distanceBetweenPoints(float x1, float y1, float x2, float y2) {
+double distance_between_points(float x1, float y1, float x2, float y2) {
 	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
 void	cast_ray(t_game *g, t_ray *ray)
 {
-	double rayAngle = normalizeAngle(ray->angle);
+	double rayAngle = normalize_angle(ray->angle);
 
 	int isRayFacingDown = rayAngle > 0 && rayAngle < M_PI;
 	int	isRayFacingUp = !isRayFacingDown;
@@ -91,7 +91,7 @@ void	cast_ray(t_game *g, t_ray *ray)
 		double xToCheck = nextHorzTouchX;
 		double yToCheck = nextHorzTouchY + (isRayFacingUp ? -1 : 0);
 		
-		if (mapHasWallAt(g, xToCheck, yToCheck)) {
+		if (map_has_wall_at(g, xToCheck, yToCheck)) {
 			// found a wall hit
 			horzWallHitX = nextHorzTouchX;
 			horzWallHitY = nextHorzTouchY;
@@ -134,7 +134,7 @@ void	cast_ray(t_game *g, t_ray *ray)
 		double xToCheck = nextVertTouchX + (isRayFacingLeft ? -1 : 0);
 		double yToCheck = nextVertTouchY;
 		
-		if (mapHasWallAt(g, xToCheck, yToCheck)) {
+		if (map_has_wall_at(g, xToCheck, yToCheck)) {
 			// found a wall hit
 			vertWallHitX = nextVertTouchX;
 			vertWallHitY = nextVertTouchY;
@@ -147,10 +147,10 @@ void	cast_ray(t_game *g, t_ray *ray)
 		}
 	}
 	double horzHitDistance = foundHorzWallHit
-		? distanceBetweenPoints(g->player->x, g->player->y, horzWallHitX, horzWallHitY)
+		? distance_between_points(g->player->x, g->player->y, horzWallHitX, horzWallHitY)
 		: FLT_MAX;
 	float vertHitDistance = foundVertWallHit
-		? distanceBetweenPoints(g->player->x, g->player->y, vertWallHitX, vertWallHitY)
+		? distance_between_points(g->player->x, g->player->y, vertWallHitX, vertWallHitY)
 		: FLT_MAX;
 	if (horzHitDistance < vertHitDistance)
 	{
@@ -165,26 +165,3 @@ void	cast_ray(t_game *g, t_ray *ray)
 		ray->wall_hit_y = floor(vertWallHitY);
 	}
 }
-
-void	clear_all_rays(t_game *g)
-{
-	int	i;
-
-	i = 0;
-	while (i < NUM_RAYS)
-	{
-		render_line_with_color(
-			g,
-			g->player->x,
-			g->player->y,
-			g->player->ray[i]->wall_hit_x,
-			g->player->ray[i]->wall_hit_y,
-			BLACK
-			);
-		free(g->player->ray[i]);
-		g->player->ray[i] = NULL;
-		i++;
-	}
-}
-
-
