@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 16:59:05 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:11:34 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ void	look_right(t_game *g);
 void	reset_all_rays(t_game *g);
 void	clear_all_rays(t_game *g);
 void	cast_all_rays(t_game *g);
+void	cast_ray(t_game *g, t_ray *ray);
 
 // cub_utils.c
 int		to_coord_minimap(double x, double y);
@@ -155,6 +156,8 @@ void	exit_with_err_msg(char *msg);
 bool	args_handling(int argc, char *argv[]);
 
 // look.c
+void	look_left(t_game *g);
+void	look_right(t_game *g);
 
 // hooks.c
 void	set_hooks(t_game *game);

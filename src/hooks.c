@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:15:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 16:53:47 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:06:14 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	deal_key(int key_code, t_game *game)
 
 int	render(t_game *game)
 {
-	cast_all_rays(game);
+	render_vision(game);
 	generate_3d(game);
 	render_minimap(game);
 	render_vision(game);

@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 16:59:13 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:05:19 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ double distanceBetweenPoints(float x1, float y1, float x2, float y2) {
 	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
-void	castRay(t_game *g, t_ray *ray)
+void	cast_ray(t_game *g, t_ray *ray)
 {
 	double rayAngle = normalizeAngle(ray->angle);
 
@@ -187,46 +187,4 @@ void	clear_all_rays(t_game *g)
 	}
 }
 
-void	cast_all_rays(t_game *g)
-{
-	double	rayAngle;
-	int		i;
 
-	i = 0;
-	rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
-	while (i < NUM_RAYS)
-	{
-		g->player->ray[i] = (t_ray *)malloc(sizeof(t_ray));
-		g->player->ray[i]->angle = rayAngle;
-		castRay(g, g->player->ray[i]);
-		rayAngle += FOV_ANGLE / (NUM_RAYS);
-		i++;
-	}
-}
-
-void	render_all_rays(t_game *g)
-{
-	double	rayAngle;
-	int		i;
-
-	i = 0;
-	rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
-	while (i < NUM_RAYS)
-	{
-		render_line_with_color(
-			g,
-			g->player->x,
-			g->player->y,
-			g->player->ray[i]->wall_hit_x,
-			g->player->ray[i]->wall_hit_y,
-			YELLOW
-			);
-		i++;
-	}
-}
-
-void	render_vision(t_game *g)
-{
-	cast_all_rays(g);
-	render_all_rays(g);
-}
