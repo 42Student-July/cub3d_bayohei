@@ -6,13 +6,13 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 15:28:37 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:30:12 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
+void	render_line(t_game *game, double x1, double y1, double x2, double y2)
 {
 	double	deltaX;
 	double	deltaY;
@@ -84,108 +84,7 @@ void	init_player_coord(t_game *g)
 	}
 }
 
-void	draw_lines(t_game *game)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (i < COLS)
-	{
-		draw_line(game, i * TILE_SIZE, 0, i * TILE_SIZE, HEIGHT);
-		i++;
-	}
-	draw_line(game, COLS * TILE_SIZE - 1, 0, COLS * TILE_SIZE - 1, HEIGHT);
-	j = 0;
-	while (j < ROWS)
-	{
-		draw_line(game, 0, j * TILE_SIZE, WIDTH, j * TILE_SIZE);
-		j++;
-	}
-	draw_line(game, 0, ROWS * TILE_SIZE - 1, WIDTH, ROWS * TILE_SIZE - 1);
-}
-
-void	draw_wall(t_game *game, int x, int y)
-{
-	int	i;
-	int	j;
-
-	x *= TILE_SIZE;
-	y *= TILE_SIZE;
-	i = 0; 
-	while (i < TILE_SIZE)
-	{
-		j = 0;
-		while (j < TILE_SIZE)
-		{
-			// TILEサイズの左上から全部1pixelずつなぞっていく
-			game->img.data[to_coord_minimap(x + j, y + i)] = 0xFFFFFF;
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_ground(t_game *game, int x, int y)
-{
-	int	i;
-	int	j;
-
-	x *= TILE_SIZE;
-	y *= TILE_SIZE;
-	i = 0; 
-	while (i < TILE_SIZE)
-	{
-		j = 0;
-		while (j < TILE_SIZE)
-		{
-			// TILEサイズの左上から全部1pixelずつなぞっていく
-			game->img.data[to_coord_minimap(x + j, y + i)] = 0xC0C0C0;
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_player(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < PLAYER_SIZE)
-	{
-		j = 0;
-		while (j < PLAYER_SIZE)
-		{
-			// TILEサイズの左上から全部1pixelずつなぞっていく
-			game->img.data[to_coord_minimap(game->player->x_draw_start + j, game->player->y_draw_start + i)] = 0xFFFF00;
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_rectangles(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < ROWS)
-	{	
-		j = 0;
-		while (j < COLS)
-		{
-			if (game->map[i][j] == 1)
-				draw_wall(game, j, i);
-			else
-				draw_ground(game, j, i);
-			j++;
-		}
-		i++;
-	}
-}
 
 int	deal_key(int key_code, t_game *game)
 {
@@ -211,10 +110,10 @@ int	main_loop(t_game *game)
 {
 	cast_all_rays(game);
 	generate_3d(game);
-	draw_rectangles(game);
+	render_rectangles(game);
 	render_vision(game);
-	draw_lines(game);
-	draw_player(game);
+	render_lines(game);
+	render_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }
@@ -231,9 +130,9 @@ int	main(int argc, char *argv[])
 
 	args_handling(argc, argv);
 	init(&game, argv[FILE_PATH]);
-	draw_player(&game);
+	render_player(&game);
 	render_vision(&game);
-	draw_rectangles(&game);
+	render_rectangles(&game);
 	// render_first(&game);
 	mlx_key_hook(game.win, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close_game, &game);

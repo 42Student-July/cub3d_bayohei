@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 15:28:37 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:48:51 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,8 @@ void	move_west(t_game *game);
 void	move_east(t_game *game);
 void	move_south(t_game *game);
 
-void	draw_player(t_game *game);
 void	init_player_coord(t_game *game);
-void	draw_line(t_game *game, double x1, double y1, double x2, double y2);
+void	render_line(t_game *game, double x1, double y1, double x2, double y2);
 void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color);
 void	print_wall(t_game *g);
 int		main_loop(t_game *game);
@@ -127,7 +126,11 @@ void	read_cub_asset(t_game *game, char *filename);
 void	generate_3d(t_game *g);
 void	clear_3d(t_game *g);
 void	render_first(t_game *game);
-void	draw_rectangles(t_game *game);
+void	render_rectangles(t_game *game);
+void	render_lines(t_game *game);
+void	render_wall(t_game *game, int x, int y);
+void	render_ground(t_game *game, int x, int y);
+void	render_player(t_game *game);
 
 // vision.c
 void	reset_vision(t_game *g);
@@ -148,7 +151,5 @@ void	exit_with_err_msg(char *msg);
 
 // args_handling.c
 bool	args_handling(int argc, char *argv[]);
-
-
 
 #endif
