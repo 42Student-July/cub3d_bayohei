@@ -6,29 +6,13 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/14 21:40:15 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 11:47:50 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	game_init(t_game *game)
-{	
-	int map[ROWS][COLS] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-	};
-	memcpy(game->map, map, sizeof(int) * ROWS * COLS);
-}
+
 
 void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
 {
@@ -123,17 +107,7 @@ void	draw_lines(t_game *game)
 	draw_line(game, 0, ROWS * TILE_SIZE - 1, WIDTH, ROWS * TILE_SIZE - 1);
 }
 
-void	window_init(t_game *game)
-{
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "mlx_42");
-}
 
-void	img_init(t_game *game)
-{
-	game->img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	game->img.data = (int *)mlx_get_data_addr(game->img.img, &game->img.bpp, &game->img.size_l, &game->img.endian);
-}
 
 void	draw_wall(t_game *game, int x, int y)
 {
@@ -260,27 +234,12 @@ int	deal_mouse(int mouse_code, t_game *game)
 	return (0);
 }
 
-void	read_cub_asset(char *filename, t_game *game)
-{
-	// int	fd;
-
-	(void)game;
-	(void)filename;
-	// fd = open(filename, O_RDONLY);
-	// if (fd == -1)
-	// 	exit_with_err_msg(READ_FILE_ERROR);
-}
-
-
 int	main(int argc, char *argv[])
 {
 	t_game	game;
 
-	(void)argc;
-	game_init(&game);
-	window_init(&game);
-	img_init(&game);
-	read_cub_asset(argv[1], &game);
+	args_handling(argc, argv);
+	init(&game, argv[FILE_PATH]);
 	draw_player(&game);
 	draw_vision(&game);
 	draw_rectangles(&game);

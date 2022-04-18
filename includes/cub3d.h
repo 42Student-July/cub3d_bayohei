@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/12 17:09:34 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 11:48:11 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define FOV_ANGLE (60 * (M_PI / 180))
 # define NUM_RAYS WIDTH
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
+# define FILE_PATH 1
 
 typedef struct s_ray
 {
@@ -114,6 +115,13 @@ void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double 
 void	print_wall(t_game *g);
 int		main_loop(t_game *game);
 
+// init.c
+void	init(t_game *game, char *filename);
+void	map_init(t_game *game);
+void	window_init(t_game *game);
+void	img_init(t_game *game);
+void	read_cub_asset(t_game *game, char *filename);
+
 // render.c
 void	generate_3d(t_game *g);
 void	clear_3d(t_game *g);
@@ -134,6 +142,10 @@ int		to_coord(double x, double y);
 
 // error_handling.c
 void	exit_with_err_msg(char *msg);
+
+// args_handling.c
+bool	args_handling(int argc, char *argv[]);
+
 
 
 #endif
