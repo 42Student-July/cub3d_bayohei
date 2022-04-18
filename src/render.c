@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 15:16:00 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/07 16:27:48 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 10:15:14 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	generate_3d(t_game *g)
 {
 	int		i;
-	// double	perp_dist;
+	double	perp_dist;
 	double	dist_project_plane;
 	double	projected_wall_height;
 	// int		wall_strip_height;
@@ -25,7 +25,8 @@ void	generate_3d(t_game *g)
 	dist_project_plane = ((WIDTH) / 2) / tan(FOV_ANGLE / 2);
 	while (i < NUM_RAYS)
 	{
-		projected_wall_height = ((TILE_SIZE) / g->player->ray[i]->dist) * dist_project_plane;
+		perp_dist = g->player->ray[i]->dist * cos(g->player->ray[i]->angle - g->player->rotate_angle);
+		projected_wall_height = ((TILE_SIZE) / perp_dist) * dist_project_plane;
 		// 描画位置特定 真ん中からprojectedのwallの半分を引いたやつ
 		wall_top_pixel = (HEIGHT / 2) - (projected_wall_height / 2);
 		if (wall_top_pixel < 0)
@@ -45,7 +46,7 @@ void	generate_3d(t_game *g)
 void	clear_3d(t_game *g)
 {
 	int		i;
-	// double	perp_dist;
+	double	perp_dist;
 	double	dist_project_plane;
 	double	projected_wall_height;
 	// int		wall_strip_height;
@@ -55,7 +56,8 @@ void	clear_3d(t_game *g)
 	dist_project_plane = ((WIDTH) / 2) / tan(FOV_ANGLE / 2);
 	while (i < NUM_RAYS)
 	{
-		projected_wall_height = ((TILE_SIZE) / g->player->ray[i]->dist) * dist_project_plane;
+		perp_dist = g->player->ray[i]->dist * cos(g->player->ray[i]->angle - g->player->rotate_angle);
+		projected_wall_height = ((TILE_SIZE) / perp_dist) * dist_project_plane;
 		// 描画位置特定 真ん中からprojectedのwallの半分を引いたやつ
 		wall_top_pixel = (HEIGHT / 2) - (projected_wall_height / 2);
 		if (wall_top_pixel < 0)
