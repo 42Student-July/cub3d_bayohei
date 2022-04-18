@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 17:11:34 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 00:01:36 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,36 @@ typedef struct s_ray
 	double	wall_hit_y;
 	double	dist;
 	double	angle;
+	bool	is_ray_facing_down;
+	bool	is_ray_facing_up;
+	bool	is_ray_facing_right;
+	bool	is_ray_facing_left;
+	double	xintercept;
+	double	yintercept;
+	double	xstep;
+	double	ystep;
+	double	next_horz_touch_x;
+	double	next_horz_touch_y;
+	double	horz_wall_hit_x;
+	double	horz_wall_hit_y;
+	bool	found_horz_wallhit;
+	double	next_vert_touch_x;
+	double	next_vert_touch_y;
+	double	vert_wall_hit_x;
+	double	vert_wall_hit_y;
+	bool	found_vert_wallhit;
 }	t_ray;
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
-	int	x_draw_start;
-	int	y_draw_start;
-	int	x_draw_end;
-	int	y_draw_end;
-	int	fov_min;
-	int	fov_max;
+	int		x;
+	int		y;
+	int		x_draw_start;
+	int		y_draw_start;
+	int		x_draw_end;
+	int		y_draw_end;
+	int		fov_min;
+	int		fov_max;
 	double	rotate_angle;
 	bool	*is_collide;
 	t_ray	**ray;
