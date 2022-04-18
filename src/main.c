@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 15:30:12 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:55:48 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	render_line(t_game *game, double x1, double y1, double x2, double y2)
 	}
 }
 
-void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color)
+void	render_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color)
 {
 	double	deltaX;
 	double	deltaY;
@@ -55,35 +55,6 @@ void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double 
 		y1 += deltaY;
 	}
 }
-
-void	init_player_coord(t_game *g)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < ROWS)
-	{	
-		j = 0;
-		while (j < COLS)
-		{
-			if (g->map[i][j] == 2)
-			{
-				g->player->x = j * TILE_SIZE - TILE_SIZE / 2;
-				g->player->y = i * TILE_SIZE - TILE_SIZE / 2;
-				g->player->x_draw_start = g->player->x - PLAYER_SIZE / 2;
-				g->player->y_draw_start = g->player->y - PLAYER_SIZE / 2;
-				g->player->x_draw_end = g->player->x_draw_start + PLAYER_SIZE;
-				g->player->y_draw_end = g->player->y_draw_start + PLAYER_SIZE;
-				g->player->rotate_angle = 0;
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
 
 
 int	deal_key(int key_code, t_game *game)
@@ -130,13 +101,10 @@ int	main(int argc, char *argv[])
 
 	args_handling(argc, argv);
 	init(&game, argv[FILE_PATH]);
-	render_player(&game);
-	render_vision(&game);
-	render_rectangles(&game);
-	// render_first(&game);
+	render(&game);
 	mlx_key_hook(game.win, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close_game, &game);
-	mlx_loop_hook(game.mlx, &main_loop, &game);
+	mlx_loop_hook(game.mlx, &render, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

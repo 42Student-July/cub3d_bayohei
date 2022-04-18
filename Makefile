@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/18 10:30:58 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/18 15:56:41 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCNAME	:=	main.c \
 			render.c \
 			error_handling.c \
 			init.c \
+			init_2.c \
 			args_handling.c \
 
 SRCS	:= $(addprefix $(SRCDIR), $(SRCNAME))

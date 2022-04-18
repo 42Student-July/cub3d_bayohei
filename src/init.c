@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 10:28:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 14:41:27 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:58:48 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,6 @@ void	init_img(t_game *game)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->img.data = (int *)mlx_get_data_addr(\
 		game->img.img, &game->img.bpp, &game->img.size_l, &game->img.endian);
-}
-
-void	init_player(t_game *game)
-{
-	game->player = (t_player *)malloc(sizeof(t_player));
-	if (game->player == NULL)
-		exit_with_err_msg(MALLOC_ERROR);
-	game->player->ray = (t_ray **)malloc(sizeof(t_ray *) * NUM_RAYS);
-	if (game->player->ray == NULL)
-		exit_with_err_msg(MALLOC_ERROR);
-	init_player_coord(game);
 }
 
 

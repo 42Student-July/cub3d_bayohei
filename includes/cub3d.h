@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 15:48:51 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:57:14 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	move_south(t_game *game);
 
 void	init_player_coord(t_game *game);
 void	render_line(t_game *game, double x1, double y1, double x2, double y2);
-void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color);
+void	render_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color);
 void	print_wall(t_game *g);
 int		main_loop(t_game *game);
 
@@ -120,12 +120,13 @@ void	init_map(t_game *game);
 void	init_window(t_game *game);
 void	init_img(t_game *game);
 void	init_player(t_game *game);
+void	init_player_coord(t_game *g);
 void	read_cub_asset(t_game *game, char *filename);
 
 // render.c
 void	generate_3d(t_game *g);
 void	clear_3d(t_game *g);
-void	render_first(t_game *game);
+int		render(t_game *game);
 void	render_rectangles(t_game *game);
 void	render_lines(t_game *game);
 void	render_wall(t_game *game, int x, int y);

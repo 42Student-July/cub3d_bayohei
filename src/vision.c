@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 15:23:58 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:50:31 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void	clear_all_rays(t_game *g)
 	i = 0;
 	while (i < NUM_RAYS)
 	{
-		draw_line_with_color(
+		render_line_with_color(
 			g,
 			g->player->x,
 			g->player->y,
@@ -218,7 +218,7 @@ void	render_all_rays(t_game *g)
 	rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
 	while (i < NUM_RAYS)
 	{
-		draw_line_with_color(
+		render_line_with_color(
 			g,
 			g->player->x,
 			g->player->y,
