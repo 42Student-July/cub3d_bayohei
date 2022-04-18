@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/18 17:15:42 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/18 17:18:02 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCNAME	:=	main.c \
 			render_3d.c \
 			render_minimap.c \
 			render_utils.c \
-			render_vision.c \
+			render_rays.c \
 			error_handling.c \
 			init.c \
 			init_2.c \
