@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 15:16:00 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 10:15:14 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:23:58 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,11 @@ void	clear_3d(t_game *g)
 		i++;
 	}
 	clear_vision(g);
+}
+
+void	render_first(t_game *game)
+{
+	draw_player(game);
+	render_vision(game);
+	draw_rectangles(game);
 }

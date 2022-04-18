@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 15:23:58 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:28:37 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ typedef struct s_game
 	int		map[ROWS][COLS];
 }	t_game;
 
-void	move_forward(t_game *game);
-void	move_left(t_game *game);
-void	move_right(t_game *game);
-void	move_back(t_game *game);
+void	move_north(t_game *game);
+void	move_west(t_game *game);
+void	move_east(t_game *game);
+void	move_south(t_game *game);
 
 void	draw_player(t_game *game);
 void	init_player_coord(t_game *game);
