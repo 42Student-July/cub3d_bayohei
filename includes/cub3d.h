@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 11:48:11 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:23:58 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef struct s_player
 {
 	int	x;
 	int	y;
-	int	x_draw_point;
-	int	y_draw_point;
+	int	x_draw_start;
+	int	y_draw_start;
 	int	x_draw_end;
 	int	y_draw_end;
 	int	fov_min;
@@ -109,7 +109,7 @@ void	move_right(t_game *game);
 void	move_back(t_game *game);
 
 void	draw_player(t_game *game);
-void	find_player_coord(t_game *game);
+void	init_player_coord(t_game *game);
 void	draw_line(t_game *game, double x1, double y1, double x2, double y2);
 void	draw_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color);
 void	print_wall(t_game *g);
@@ -117,18 +117,21 @@ int		main_loop(t_game *game);
 
 // init.c
 void	init(t_game *game, char *filename);
-void	map_init(t_game *game);
-void	window_init(t_game *game);
-void	img_init(t_game *game);
+void	init_map(t_game *game);
+void	init_window(t_game *game);
+void	init_img(t_game *game);
+void	init_player(t_game *game);
 void	read_cub_asset(t_game *game, char *filename);
 
 // render.c
 void	generate_3d(t_game *g);
 void	clear_3d(t_game *g);
+void	render_first(t_game *game);
+void	draw_rectangles(t_game *game);
 
 // vision.c
 void	reset_vision(t_game *g);
-void	draw_vision(t_game *g);
+void	render_vision(t_game *g);
 void	look_left(t_game *g);
 void	look_right(t_game *g);
 void	reset_all_rays(t_game *g);
