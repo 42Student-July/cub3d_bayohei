@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/18 15:56:41 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/18 16:43:44 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,15 @@ SRCNAME	:=	main.c \
 			vision.c \
 			cub_utils.c \
 			debug.c \
-			render.c \
+			render_3d.c \
+			render_minimap.c \
+			render_utils.c \
 			error_handling.c \
 			init.c \
 			init_2.c \
 			args_handling.c \
+			hooks.c \
+			look.c \
 
 SRCS	:= $(addprefix $(SRCDIR), $(SRCNAME))
 OBJSDIR	:= ./obj/

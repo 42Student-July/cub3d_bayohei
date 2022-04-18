@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 15:57:14 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:45:43 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 
 # define YELLOW 0xFFFF00
 # define BLACK 0x0
+# define WHITE 0xFFFFFF
 
 # define TILE_SIZE 32
 # define PLAYER_SIZE 6
@@ -127,11 +128,12 @@ void	read_cub_asset(t_game *game, char *filename);
 void	generate_3d(t_game *g);
 void	clear_3d(t_game *g);
 int		render(t_game *game);
-void	render_rectangles(t_game *game);
+void	render_minimap(t_game *game);
 void	render_lines(t_game *game);
 void	render_wall(t_game *game, int x, int y);
 void	render_ground(t_game *game, int x, int y);
 void	render_player(t_game *game);
+void	render_all_rays(t_game *g);
 
 // vision.c
 void	reset_vision(t_game *g);
@@ -152,5 +154,11 @@ void	exit_with_err_msg(char *msg);
 
 // args_handling.c
 bool	args_handling(int argc, char *argv[]);
+
+// look.c
+
+// hooks.c
+void	set_hooks(t_game *game);
+
 
 #endif

@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   look.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 16:53:59 by mhirabay         ###   ########.fr       */
+/*   Created: 2022/04/18 16:43:09 by mhirabay          #+#    #+#             */
+/*   Updated: 2022/04/18 16:43:33 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char *argv[])
+void	look_left(t_game *g)
 {
-	t_game	game;
+	clear_3d(g);
+	g->player->rotate_angle -= 5 * FOV_ANGLE / (NUM_RAYS);
+	cast_all_rays(g);
+	render_all_rays(g);
+}
 
-	args_handling(argc, argv);
-	init(&game, argv[FILE_PATH]);
-	render(&game);
-	set_hooks(&game);
-	mlx_loop(game.mlx);
-	return (0);
+void	look_right(t_game *g)
+{
+	clear_3d(g);
+	g->player->rotate_angle += 5 * FOV_ANGLE / (NUM_RAYS);
+	cast_all_rays(g);
+	render_all_rays(g);
 }
