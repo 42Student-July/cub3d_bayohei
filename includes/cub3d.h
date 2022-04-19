@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 00:01:36 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:16:57 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,20 @@
 # define YELLOW 0xFFFF00
 # define BLACK 0x0
 # define WHITE 0xFFFFFF
+# define GREEN 0x007F33
+# define SKY_BLUE 0x66CCFF
 
 # define TILE_SIZE 32
 # define PLAYER_SIZE 6
 # define PLAYER_MOVE_PIXEL 1
 # define PLAYER_LOOK_DEGREE 1
+# define TEXTURE_HEIGHT 50
+# define TEXTURE_WIDTH 50
+
+# define NO 2
+# define SO 3
+# define WE 4
+# define EA 5
 
 # define MINIMAP_SCALE 0.5
 # define ROWS 11 
@@ -54,6 +63,11 @@
 # define NUM_RAYS WIDTH
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 # define FILE_PATH 1
+
+# define NO_PATH "./asset/texture/NO.xpm"
+# define SO_PATH "./asset/texture/SO.xpm"
+# define EA_PATH "./asset/texture/EA.xpm"
+# define WE_PATH "./asset/texture/WE.xpm"
 
 typedef struct s_ray
 {
@@ -112,6 +126,15 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_texture
+{
+	t_img	no_img;
+	t_img	so_img;
+	t_img	we_img;
+	t_img	ea_img;
+}	t_texture;
+
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -119,6 +142,10 @@ typedef struct s_game
 	t_img		img;
 	t_player	*player;
 	t_config	*config;
+	t_texture	texture;
+	// TODO: いずれ消す
+	int			floor_color;
+	int			celling_color;
 	int		map[ROWS][COLS];
 }	t_game;
 
@@ -141,6 +168,9 @@ void	init_img(t_game *game);
 void	init_player(t_game *game);
 void	init_player_coord(t_game *g);
 void	read_cub_asset(t_game *game, char *filename);
+
+// init_2.c
+void	init_color(t_game *game);
 
 // render.c
 void	generate_3d(t_game *g);
@@ -166,6 +196,8 @@ void	cast_ray(t_game *g, t_ray *ray);
 // cub_utils.c
 int		to_coord_minimap(double x, double y);
 int		to_coord(double x, double y);
+int		to_coord_tex(double x, double y);
+
 
 // error_handling.c
 void	exit_with_err_msg(char *msg);

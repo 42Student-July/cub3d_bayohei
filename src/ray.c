@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 00:23:11 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:47:00 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 double	normalize_angle(double angle)
 {
+	angle = remainder(angle, (2 * M_PI));
 	if (angle < 0)
 	{
 		angle = (2 * M_PI) + angle;
@@ -42,10 +43,10 @@ double	distance_between_points(float x1, float y1, float x2, float y2)
 
 void	init_ray_facing(t_ray *ray, double ray_angle)
 {
-	ray->angle = normalize_angle(ray->angle);
-	ray->is_ray_facing_down = ray_angle > 0 && ray_angle < M_PI;
+	ray->angle = normalize_angle(ray_angle);
+	ray->is_ray_facing_down = ray->angle > 0 && ray->angle < M_PI;
 	ray->is_ray_facing_up = !(ray->is_ray_facing_down);
-	ray->is_ray_facing_right = ray_angle < 0.5 * M_PI || ray_angle > 1.5 * M_PI;
+	ray->is_ray_facing_right = ray->angle < 0.5 * M_PI || ray->angle > 1.5 * M_PI;
 	ray->is_ray_facing_left = !(ray->is_ray_facing_right);
 }
 
@@ -168,12 +169,14 @@ void	cast_ray(t_game *g, t_ray *ray)
 	if (horz_hit_distance < vert_hit_distance)
 	{
 		ray->dist = horz_hit_distance;
+		ray->found_vert_wallhit = false;
 		ray->wall_hit_x = floor(ray->horz_wall_hit_x);
 		ray->wall_hit_y = floor(ray->horz_wall_hit_y);
 	}
 	else
 	{
 		ray->dist = vert_hit_distance;
+		ray->found_horz_wallhit = false;
 		ray->wall_hit_x = floor(ray->vert_wall_hit_x);
 		ray->wall_hit_y = floor(ray->vert_wall_hit_y);
 	}

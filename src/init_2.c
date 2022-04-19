@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:56:29 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 15:59:00 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 15:50:39 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,10 @@ void	init_player_coord(t_game *g)
 		}
 		i++;
 	}
+}
+
+void	init_color(t_game *game)
+{
+	game->floor_color = GREEN;
+	game->celling_color = SKY_BLUE;
 }
