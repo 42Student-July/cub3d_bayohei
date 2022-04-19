@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/12 22:14:01 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/18 17:18:02 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,19 @@ NAME 	:= cub3D
 SRCDIR 	:= ./src/
 SRCNAME	:=	main.c \
 			move.c \
-			vision.c \
+			ray.c \
 			cub_utils.c \
 			debug.c \
-			render.c \
+			render_3d.c \
+			render_minimap.c \
+			render_utils.c \
+			render_rays.c \
 			error_handling.c \
+			init.c \
+			init_2.c \
+			args_handling.c \
+			hooks.c \
+			look.c \
 
 SRCS	:= $(addprefix $(SRCDIR), $(SRCNAME))
 OBJSDIR	:= ./obj/
