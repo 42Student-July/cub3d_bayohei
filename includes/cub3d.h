@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 00:01:36 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 15:36:48 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define PLAYER_SIZE 6
 # define PLAYER_MOVE_PIXEL 1
 # define PLAYER_LOOK_DEGREE 1
+# define TEXTURE_HEIGHT 50
+# define TEXTURE_WIDTH 50
 
 # define MINIMAP_SCALE 0.5
 # define ROWS 11 
@@ -54,6 +56,11 @@
 # define NUM_RAYS WIDTH
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 # define FILE_PATH 1
+
+# define NO_PATH "./asset/texture/NO.xpm"
+# define SO_PATH "./asset/texture/SO.xpm"
+# define EA_PATH "./asset/texture/EA.xpm"
+# define WE_PATH "./asset/texture/WE.xpm"
 
 typedef struct s_ray
 {
@@ -112,6 +119,15 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_texture
+{
+	t_img	no_img;
+	t_img	so_img;
+	t_img	we_img;
+	t_img	ea_img;
+}	t_texture;
+
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -119,6 +135,10 @@ typedef struct s_game
 	t_img		img;
 	t_player	*player;
 	t_config	*config;
+	t_texture	texture;
+	// TODO: いずれ消す
+	int			floor_color;
+	int			celling_color;
 	int		map[ROWS][COLS];
 }	t_game;
 
