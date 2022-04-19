@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 15:16:00 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 15:51:37 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 15:53:11 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,13 @@ void	generate_3d(t_game *g)
 		wall_bottom_pixel = (HEIGHT / 2) + (projected_wall_height / 2);
 		if (wall_bottom_pixel > HEIGHT)
 			wall_bottom_pixel = HEIGHT;
-		// render_celling(g, i, wall_top_pixel);
+		render_celling(g, i, wall_top_pixel);
 		while (wall_top_pixel < wall_bottom_pixel)
 		{
 			g->img.data[to_coord(i, wall_top_pixel)] = YELLOW;
 			wall_top_pixel++;
 		}
-		// render_floor(g, i, wall_bottom_pixel);
+		render_floor(g, i, wall_bottom_pixel);
 		i++;
 	}
 }
@@ -128,13 +128,13 @@ void	clear_3d(t_game *g)
 		wall_bottom_pixel = (HEIGHT / 2) + (projected_wall_height / 2);
 		if (wall_bottom_pixel > HEIGHT)
 			wall_bottom_pixel = HEIGHT;
-		// clear_celling(g, i, wall_top_pixel);
+		clear_celling(g, i, wall_top_pixel);
 		while (wall_top_pixel < wall_bottom_pixel)
 		{
 			g->img.data[to_coord(i, wall_top_pixel)] = BLACK;
 			wall_top_pixel++;
 		}
-		// clear_floor(g, i, wall_top_pixel);
+		clear_floor(g, i, wall_top_pixel);
 		i++;
 	}
 	clear_all_rays(g);
