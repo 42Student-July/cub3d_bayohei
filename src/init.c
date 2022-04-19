@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 10:28:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 15:02:00 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 15:50:46 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	read_cub_asset(t_game *game, char *filename)
 	// 	exit_with_err_msg(READ_FILE_ERROR);
 	init_map(game);
 	init_img(game);
+	init_color(game);
 }
 
 // TODO: fileから読み込む形式にする
@@ -104,7 +105,6 @@ void	init_texture(t_game *game)
 		&game->texture.we_img.size_l, &game->texture.we_img.endian);
 }
 
-
 void	init_img(t_game *game)
 {
 	game->img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
@@ -114,5 +114,3 @@ void	init_img(t_game *game)
 		game->img.img, &game->img.bpp, &game->img.size_l, &game->img.endian);
 	init_texture(game);
 }
-
-

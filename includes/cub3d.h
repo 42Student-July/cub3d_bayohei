@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 15:36:48 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 15:51:06 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define YELLOW 0xFFFF00
 # define BLACK 0x0
 # define WHITE 0xFFFFFF
+# define GREEN 0x007F33
+# define SKY_BLUE 0x66CCFF
 
 # define TILE_SIZE 32
 # define PLAYER_SIZE 6
@@ -161,6 +163,9 @@ void	init_img(t_game *game);
 void	init_player(t_game *game);
 void	init_player_coord(t_game *g);
 void	read_cub_asset(t_game *game, char *filename);
+
+// init_2.c
+void	init_color(t_game *game);
 
 // render.c
 void	generate_3d(t_game *g);
