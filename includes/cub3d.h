@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 15:51:06 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:16:57 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@
 # define PLAYER_LOOK_DEGREE 1
 # define TEXTURE_HEIGHT 50
 # define TEXTURE_WIDTH 50
+
+# define NO 2
+# define SO 3
+# define WE 4
+# define EA 5
 
 # define MINIMAP_SCALE 0.5
 # define ROWS 11 
@@ -191,6 +196,8 @@ void	cast_ray(t_game *g, t_ray *ray);
 // cub_utils.c
 int		to_coord_minimap(double x, double y);
 int		to_coord(double x, double y);
+int		to_coord_tex(double x, double y);
+
 
 // error_handling.c
 void	exit_with_err_msg(char *msg);

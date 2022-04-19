@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 00:23:11 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:27:06 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,12 +168,14 @@ void	cast_ray(t_game *g, t_ray *ray)
 	if (horz_hit_distance < vert_hit_distance)
 	{
 		ray->dist = horz_hit_distance;
+		ray->found_vert_wallhit = false;
 		ray->wall_hit_x = floor(ray->horz_wall_hit_x);
 		ray->wall_hit_y = floor(ray->horz_wall_hit_y);
 	}
 	else
 	{
 		ray->dist = vert_hit_distance;
+		ray->found_horz_wallhit = false;
 		ray->wall_hit_x = floor(ray->vert_wall_hit_x);
 		ray->wall_hit_y = floor(ray->vert_wall_hit_y);
 	}
