@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:15:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 17:06:14 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/19 18:05:44 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ int	deal_key(int key_code, t_game *game)
 	return (0);
 }
 
+int	deal_key_1(int key_code, t_game *game)
+{
+	printf("key_code = %d\n", key_code);
+	(void)game;
+	return (0);
+}
+
 int	render(t_game *game)
 {
 	render_vision(game);
@@ -52,7 +59,9 @@ int	close_game(t_game *game)
 
 void	set_hooks(t_game *game)
 {
-	mlx_key_hook(game->win, &deal_key, game);
+	// mlx_key_hook(game->win, &deal_key, game);
+	mlx_hook(game->win, 2, (1L<<0), &deal_key, game);
+	// mlx_hook(game->win, 3, (1L<<1), &deal_key, game);
 	mlx_hook(game->win, X_EVENT_KEY_EXIT, 0, &close_game, game);
 	mlx_loop_hook(game->mlx, &render, game);
 }
