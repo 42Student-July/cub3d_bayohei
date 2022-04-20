@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:15:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 14:19:21 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:08:22 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	deal_key(int key_code, t_game *game)
 	if (key_code == KEY_ESC)
 		exit(0);
 	if (key_code == KEY_W)
-		move_north(game);
+		move_forward(game);
 	else if (key_code == KEY_A)
-		move_west(game);
+		move_left(game);
 	else if (key_code == KEY_D)
-		move_east(game);
+		move_right(game);
 	else if (key_code == KEY_S)
-		move_south(game);
+		move_back(game);
 	if (key_code == KEY_LEFT_ARROW)
 		look_left(game);
 	else if (key_code == KEY_RIGHT_ARROW)

@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:56:29 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 14:54:35 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:11:31 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ bool	is_player_position(int map_data)
 
 void	init_player_angle(t_game *g, int direction)
 {
+	g->player->direction = direction;
 	if (direction == NO)
 	{
 		g->player->rotate_angle = 270 * (M_PI / 180);
