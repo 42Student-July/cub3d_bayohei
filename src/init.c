@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 10:28:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 14:53:38 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 18:22:40 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	init_texture(t_game *game)
 
 	height = TEXTURE_HEIGHT;
 	width = TEXTURE_WIDTH;
-		// xpmを読み込む、暫定で絶対パスで読み込む	
+		// xpmを読み込む、暫定で絶対パスで読み込む
 	game->texture.no_img.img = mlx_xpm_file_to_image(\
 	game->mlx, NO_PATH, &width, &height);
 	if (game->img.img == NULL)

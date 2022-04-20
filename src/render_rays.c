@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:36:50 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 17:24:19 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 22:50:20 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,19 @@ void	cast_all_rays(t_game *g)
 
 void	clear_all_rays(t_game *g)
 {
-	int	i;
+	int			i;
+	t_grid_dist	grid;
 
 	i = 0;
 	while (i < NUM_RAYS)
 	{
+		grid.x1 = g->player->x;
+		grid.y1 = g->player->y;
+		grid.x2 = g->player->ray[i]->wall_hit_x;
+		grid.y2 = g->player->ray[i]->wall_hit_y;
 		render_line_with_color(
 			g,
-			g->player->x,
-			g->player->y,
-			g->player->ray[i]->wall_hit_x,
-			g->player->ray[i]->wall_hit_y,
+			grid,
 			BLACK
 			);
 		free(g->player->ray[i]);
@@ -52,19 +54,21 @@ void	clear_all_rays(t_game *g)
 
 void	render_all_rays(t_game *g)
 {
-	double	rayAngle;
-	int		i;
+	double		rayAngle;
+	int			i;
+	t_grid_dist	grid;
 
 	i = 0;
 	rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
 	while (i < NUM_RAYS)
 	{
+		grid.x1 = g->player->x;
+		grid.y1 = g->player->y;
+		grid.x2 = g->player->ray[i]->wall_hit_x;
+		grid.y2 = g->player->ray[i]->wall_hit_y;
 		render_line_with_color(
 			g,
-			g->player->x,
-			g->player->y,
-			g->player->ray[i]->wall_hit_x,
-			g->player->ray[i]->wall_hit_y,
+			grid,
 			YELLOW
 			);
 		i++;

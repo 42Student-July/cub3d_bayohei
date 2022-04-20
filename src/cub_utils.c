@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:38:10 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 17:15:39 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 16:08:05 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ int	to_coord_tex(double x, double y)
 	ret = y_conv * TEXTURE_WIDTH + x_conv;
 	return (ret);
 }
-

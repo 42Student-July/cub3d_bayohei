@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 15:16:24 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 22:50:01 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,20 @@ typedef struct s_texture
 	t_img	ea_img;
 }	t_texture;
 
+typedef struct s_wall3d_info
+{
+	int		wall_top_pixel;
+	int		wall_bottom_pixel;
+	double	projected_wall_height;
+}	t_wall3d_info;
+
+typedef struct s_grid_dist
+{
+	double	x1;
+	double	x2;
+	double	y1;
+	double	y2;
+}	t_grid_dist;
 
 typedef struct s_game
 {
@@ -163,8 +177,7 @@ void	move_east(t_game *game);
 void	move_south(t_game *game);
 
 void	init_player_coord(t_game *game);
-void	render_line(t_game *game, double x1, double y1, double x2, double y2);
-void	render_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color);
+void	render_line_with_color(t_game *g, t_grid_dist grid, int color);
 void	print_wall(t_game *g);
 int		main_loop(t_game *game);
 
@@ -190,6 +203,8 @@ void	render_wall(t_game *game, int x, int y);
 void	render_ground(t_game *game, int x, int y);
 void	render_player(t_game *game);
 void	render_all_rays(t_game *g);
+void	render_horizontal(t_game *game);
+void	render_vertical(t_game *game);
 
 // vision.c
 void	reset_vision(t_game *g);
@@ -205,7 +220,8 @@ void	cast_ray(t_game *g, t_ray *ray);
 int		to_coord_minimap(double x, double y);
 int		to_coord(double x, double y);
 int		to_coord_tex(double x, double y);
-
+double	normalize_angle(double angle);
+int		map_has_wall_at(t_game *g, double x, double y);
 
 // error_handling.c
 void	exit_with_err_msg(char *msg);
@@ -220,5 +236,24 @@ void	look_right(t_game *g);
 // hooks.c
 void	set_hooks(t_game *game);
 
+// render_3d_utils.c
+void	render_lines(t_game *game);
+void	render_celling(t_game *g, int x, int wall_top_pixel);
+void	render_floor(t_game *g, int x, int wall_bottom_pixel);
+void	clear_celling(t_game *g, int x, int wall_top_pixel);
+void	clear_floor(t_game *g, int x, int wall_bottom_pixel);
+void	calc_wall_info(t_ray *ray, double p_angle, t_wall3d_info *wall_info);
+
+// render_3d_utils_2.c
+void	clear_3d(t_game *g);
+int		calc_offset_x(int wall_hit);
+
+// ray_utils.c
+double	normalize_angle(double angle);
+int		map_has_wall_at(t_game *g, double x, double y);
+void	init_ray_facing(t_ray *ray, double ray_angle);
+void	get_horz_step_and_intercept(t_game *g, t_ray *ray);
+void	get_horz_wall_hit(t_game *g, t_ray *ray);
+void	get_vert_wall_hit(t_game *g, t_ray *ray);
 
 #endif
