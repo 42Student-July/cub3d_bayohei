@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:56:29 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 15:50:39 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 14:54:35 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,41 @@ void	init_player(t_game *game)
 	init_player_coord(game);
 }
 
+bool	is_player_position(int map_data)
+{
+	if (
+		map_data == NO || \
+		map_data == SO || \
+		map_data == WE || \
+		map_data == EA
+	)
+		return (true);
+	return (false);
+}
+
+void	init_player_angle(t_game *g, int direction)
+{
+	if (direction == NO)
+	{
+		g->player->rotate_angle = 270 * (M_PI / 180);
+	}
+	else if (direction == SO)
+	{
+		g->player->rotate_angle = 90 * (M_PI / 180);
+	}
+	else if (direction == WE)
+	{
+		g->player->rotate_angle = 180 * (M_PI / 180);
+	}
+	else if (direction == EA)
+	{
+		g->player->rotate_angle = 0 * (M_PI / 180);
+	}
+	else
+		g->player->rotate_angle = 0 * (M_PI / 180);
+}
+
+
 void	init_player_coord(t_game *g)
 {
 	int	i;
@@ -34,7 +69,7 @@ void	init_player_coord(t_game *g)
 		j = 0;
 		while (j < COLS)
 		{
-			if (g->map[i][j] == 2)
+			if (is_player_position(g->map[i][j]))
 			{
 				g->player->x = j * TILE_SIZE - TILE_SIZE / 2;
 				g->player->y = i * TILE_SIZE - TILE_SIZE / 2;
@@ -42,7 +77,7 @@ void	init_player_coord(t_game *g)
 				g->player->y_draw_start = g->player->y - PLAYER_SIZE / 2;
 				g->player->x_draw_end = g->player->x_draw_start + PLAYER_SIZE;
 				g->player->y_draw_end = g->player->y_draw_start + PLAYER_SIZE;
-				g->player->rotate_angle = 0;
+				init_player_angle(g, g->map[i][j]);
 				return ;
 			}
 			j++;
