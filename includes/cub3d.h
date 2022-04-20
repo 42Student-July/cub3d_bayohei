@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/19 17:16:57 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:16:24 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_player
 	int		fov_max;
 	double	rotate_angle;
 	bool	*is_collide;
+	int		direction;
 	t_ray	**ray;
 }	t_player;
 
@@ -149,6 +150,13 @@ typedef struct s_game
 	int		map[ROWS][COLS];
 }	t_game;
 
+// move.c
+void	move_forward(t_game *g);
+void	move_right(t_game *g);
+void	move_left(t_game *g);
+void	move_back(t_game *g);
+
+// move_direction.c
 void	move_north(t_game *game);
 void	move_west(t_game *game);
 void	move_east(t_game *game);
