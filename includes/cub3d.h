@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 17:30:03 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 18:14:33 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,8 @@ void	move_south(t_game *game);
 
 void	init_player_coord(t_game *game);
 void	render_line(t_game *game, double x1, double y1, double x2, double y2);
-void	render_line_with_color(t_game *game, double x1, double y1, double x2, double y2, int color);
+void	render_line_with_color(\
+	t_game *g, double delta_x, double delta_y, int color);
 void	print_wall(t_game *g);
 int		main_loop(t_game *game);
 
@@ -211,6 +212,8 @@ void	cast_ray(t_game *g, t_ray *ray);
 int		to_coord_minimap(double x, double y);
 int		to_coord(double x, double y);
 int		to_coord_tex(double x, double y);
+double	normalize_angle(double angle);
+int		map_has_wall_at(t_game *g, double x, double y);
 
 // error_handling.c
 void	exit_with_err_msg(char *msg);
@@ -236,5 +239,14 @@ void	calc_wall_info(t_ray *ray, double p_angle, t_wall3d_info *wall_info);
 // render_3d_utils_2.c
 void	clear_3d(t_game *g);
 int		calc_offset_x(int wall_hit);
+
+// ray_utils.c
+double	normalize_angle(double angle);
+int		map_has_wall_at(t_game *g, double x, double y);
+void	init_ray_facing(t_ray *ray, double ray_angle);
+void	get_horz_step_and_intercept(t_game *g, t_ray *ray);
+void	get_horz_wall_hit(t_game *g, t_ray *ray);
+void	get_vert_wall_hit(t_game *g, t_ray *ray);
+void	render_line_with_color_1(t_game *game, double x1, double y1, double x2, double y2, int color);
 
 #endif

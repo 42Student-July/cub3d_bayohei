@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/20 17:29:33 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/20 18:06:50 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCNAME	:=	main.c \
 			move.c \
 			move_direction.c \
 			ray.c \
+			ray_utils.c \
 			cub_utils.c \
 			debug.c \
 			render_3d.c \

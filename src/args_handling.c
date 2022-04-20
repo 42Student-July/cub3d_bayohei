@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 10:25:11 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 10:28:37 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 17:31:00 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,3 @@ bool	args_handling(int argc, char *argv[])
 	(void)argv;
 	return (true);
 }
-
