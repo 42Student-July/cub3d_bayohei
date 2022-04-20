@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 18:21:42 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 21:11:33 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,6 @@ double	calc_distance_vert(t_game *g, t_ray *ray)
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-double	distance_between_points(float x1, float y1, float x2, float y2)
-{
-	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
-}
-
 void	cast_ray(t_game *g, t_ray *ray)
 {
 	double	horz_hit_distance;
@@ -106,11 +101,7 @@ void	cast_ray(t_game *g, t_ray *ray)
 	get_vert_wall_hit(g, ray);
 	if (ray->found_horz_wallhit)
 		horz_hit_distance = calc_distance_horz(g, ray);
-		// horz_hit_distance = distance_between_points(\
-		// g->player->x, g->player->y, ray->horz_wall_hit_x, ray->horz_wall_hit_y);
 	if (ray->found_vert_wallhit)
-		// vert_hit_distance = distance_between_points(\
-		// g->player->x, g->player->y, ray->vert_wall_hit_x, ray->vert_wall_hit_y);
 		vert_hit_distance = calc_distance_vert(g, ray);
 	if (horz_hit_distance < vert_hit_distance)
 	{

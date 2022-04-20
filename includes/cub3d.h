@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 18:14:33 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 22:50:01 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,14 @@ typedef struct s_wall3d_info
 	double	projected_wall_height;
 }	t_wall3d_info;
 
+typedef struct s_grid_dist
+{
+	double	x1;
+	double	x2;
+	double	y1;
+	double	y2;
+}	t_grid_dist;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -169,9 +177,7 @@ void	move_east(t_game *game);
 void	move_south(t_game *game);
 
 void	init_player_coord(t_game *game);
-void	render_line(t_game *game, double x1, double y1, double x2, double y2);
-void	render_line_with_color(\
-	t_game *g, double delta_x, double delta_y, int color);
+void	render_line_with_color(t_game *g, t_grid_dist grid, int color);
 void	print_wall(t_game *g);
 int		main_loop(t_game *game);
 
@@ -197,6 +203,8 @@ void	render_wall(t_game *game, int x, int y);
 void	render_ground(t_game *game, int x, int y);
 void	render_player(t_game *game);
 void	render_all_rays(t_game *g);
+void	render_horizontal(t_game *game);
+void	render_vertical(t_game *game);
 
 // vision.c
 void	reset_vision(t_game *g);
@@ -247,6 +255,5 @@ void	init_ray_facing(t_ray *ray, double ray_angle);
 void	get_horz_step_and_intercept(t_game *g, t_ray *ray);
 void	get_horz_wall_hit(t_game *g, t_ray *ray);
 void	get_vert_wall_hit(t_game *g, t_ray *ray);
-void	render_line_with_color_1(t_game *game, double x1, double y1, double x2, double y2, int color);
 
 #endif

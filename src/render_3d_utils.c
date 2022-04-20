@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:13:30 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 17:15:27 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 22:48:12 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,8 @@
 
 void	render_lines(t_game *game)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < COLS)
-	{
-		render_line(game, i * TILE_SIZE, 0, i * TILE_SIZE, HEIGHT);
-		i++;
-	}
-	render_line(game, COLS * TILE_SIZE - 1, 0, COLS * TILE_SIZE - 1, HEIGHT);
-	j = 0;
-	while (j < ROWS)
-	{
-		render_line(game, 0, j * TILE_SIZE, WIDTH, j * TILE_SIZE);
-		j++;
-	}
-	render_line(game, 0, ROWS * TILE_SIZE - 1, WIDTH, ROWS * TILE_SIZE - 1);
+	render_horizontal(game);
+	render_vertical(game);
 }
 
 void	render_celling(t_game *g, int x, int wall_top_pixel)
