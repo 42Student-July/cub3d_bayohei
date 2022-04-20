@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:28:44 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 16:35:37 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 16:07:26 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	render_ground(t_game *game, int x, int y)
 
 	x *= TILE_SIZE;
 	y *= TILE_SIZE;
-	i = 0; 
+	i = 0;
 	while (i < TILE_SIZE)
 	{
 		j = 0;

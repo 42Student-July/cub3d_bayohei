@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 15:16:24 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/20 17:30:03 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,12 @@ typedef struct s_texture
 	t_img	ea_img;
 }	t_texture;
 
+typedef struct s_wall3d_info
+{
+	int		wall_top_pixel;
+	int		wall_bottom_pixel;
+	double	projected_wall_height;
+}	t_wall3d_info;
 
 typedef struct s_game
 {
@@ -206,7 +212,6 @@ int		to_coord_minimap(double x, double y);
 int		to_coord(double x, double y);
 int		to_coord_tex(double x, double y);
 
-
 // error_handling.c
 void	exit_with_err_msg(char *msg);
 
@@ -220,5 +225,16 @@ void	look_right(t_game *g);
 // hooks.c
 void	set_hooks(t_game *game);
 
+// render_3d_utils.c
+void	render_lines(t_game *game);
+void	render_celling(t_game *g, int x, int wall_top_pixel);
+void	render_floor(t_game *g, int x, int wall_bottom_pixel);
+void	clear_celling(t_game *g, int x, int wall_top_pixel);
+void	clear_floor(t_game *g, int x, int wall_bottom_pixel);
+void	calc_wall_info(t_ray *ray, double p_angle, t_wall3d_info *wall_info);
+
+// render_3d_utils_2.c
+void	clear_3d(t_game *g);
+int		calc_offset_x(int wall_hit);
 
 #endif

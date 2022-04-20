@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/20 15:09:30 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/20 17:29:33 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRCNAME	:=	main.c \
 			cub_utils.c \
 			debug.c \
 			render_3d.c \
+			render_3d_utils.c \
+			render_3d_utils_2.c \
 			render_minimap.c \
 			render_utils.c \
 			render_rays.c \
