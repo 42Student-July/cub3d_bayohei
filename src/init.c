@@ -12,24 +12,22 @@
 
 #include "cub3d.h"
 
-void	init(t_game *game, char *filename)
+void	init(t_game *game)
 {
 	init_window(game);
-	read_cub_asset(game, filename);
+	read_cub_asset(game);
 	init_player(game);
 }
 
-void	read_cub_asset(t_game *game, char *filename)
+void	read_cub_asset(t_game *game)
 {
 	// int	fd;
-
-	(void)game;
-	(void)filename;
 	// fd = open(filename, O_RDONLY);
 	// if (fd == -1)
 	// 	exit_with_err_msg(READ_FILE_ERROR);
 	//init_map(game);
 	game->map = game->d.map;
+	//printf("%s\n",game->d.tex[TEX_NO]);
 	init_img(game);
 	init_color(game);
 }
@@ -54,6 +52,7 @@ void	init_texture(t_game *game)
 	height = TEXTURE_HEIGHT;
 	width = TEXTURE_WIDTH;
 		// xpmを読み込む、暫定で絶対パスで読み込む
+	
 	game->texture.no_img.img = mlx_xpm_file_to_image(\
 	game->mlx, game->d.tex[TEX_NO], &width, &height);
 	if (game->img.img == NULL)
@@ -79,7 +78,7 @@ void	init_texture(t_game *game)
 	&game->texture.ea_img.size_l, &game->texture.ea_img.endian);
 
 	game->texture.we_img.img = mlx_xpm_file_to_image(\
-	game->mlx, game->d.tex[WE], &width, &height);
+	game->mlx, game->d.tex[TEX_WE], &width, &height);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->texture.we_img.data = (int *)mlx_get_data_addr(\
@@ -89,6 +88,7 @@ void	init_texture(t_game *game)
 
 void	init_img(t_game *game)
 {
+
 	game->img.img = mlx_new_image(game->mlx,WIDTH, HEIGHT);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);

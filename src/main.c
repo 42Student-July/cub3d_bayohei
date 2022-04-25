@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 	arg_check(argc,argv[1]);
 	parse_file(&d ,argv[1]);
 	game.d = d;
-	init(&game, argv[FILE_PATH]);
+	init(&game);
 	render(&game);
 	set_hooks(&game);
 	mlx_loop(game.mlx);

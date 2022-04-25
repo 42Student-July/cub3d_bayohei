@@ -183,13 +183,13 @@ void	print_wall(t_game *g);
 int		main_loop(t_game *game);
 
 // init.c
-void	init(t_game *game, char *filename);
+void	init(t_game *game);
 void	init_map(t_game *game);
 void	init_window(t_game *game);
 void	init_img(t_game *game);
 void	init_player(t_game *game);
 void	init_player_coord(t_game *g);
-void	read_cub_asset(t_game *game, char *filename);
+void	read_cub_asset(t_game *game);
 
 // init_2.c
 void	init_color(t_game *game);

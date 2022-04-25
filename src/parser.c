@@ -1,9 +1,5 @@
 #include "parser.h"
 
-
-
-
-
 void parse_file(t_data *d, char *arg)
 {
     char **parsed_cub;
@@ -32,7 +28,5 @@ void parse_file(t_data *d, char *arg)
     //     printf("\n");
     //     i++;
     // }
-    //if()
-    //checkmap dfs memoka de tansaku   getmap
 
 }

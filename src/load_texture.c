@@ -21,10 +21,11 @@ bool load_texture(t_data *d, char *line, int tex)
 
     sp = split_and_check_size(line, 2, ' ');
     str = del_newline(sp[1]);
+    //printf("str  :%s\n",str);
     if(!check_exist(str))
         print_error(BAD_ELEMENT_ERR);
     d->tex[tex] = ft_xstrdup(str);
-    free_double_ptr(&sp);
     free(str);
+    free_double_ptr(&sp);
     return (true);
 }
