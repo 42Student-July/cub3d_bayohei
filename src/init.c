@@ -28,31 +28,13 @@ void	read_cub_asset(t_game *game, char *filename)
 	// fd = open(filename, O_RDONLY);
 	// if (fd == -1)
 	// 	exit_with_err_msg(READ_FILE_ERROR);
-	init_map(game);
+	//init_map(game);
+	game->map = game->d.map;
 	init_img(game);
 	init_color(game);
 }
 
 // TODO: fileから読み込む形式にする
-void	init_map(t_game *game)
-{	
-	int map[ROWS][COLS] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-	};
-	memcpy(game->map, map, sizeof(int) * ROWS * COLS);
-	// ここにmap関係のvalidationを実装する
-	// mapはintの二次元配列 playerのN, E, S, Wは2, 3, 4, 5とする
-}
 
 void	init_window(t_game *game)
 {
@@ -73,7 +55,7 @@ void	init_texture(t_game *game)
 	width = TEXTURE_WIDTH;
 		// xpmを読み込む、暫定で絶対パスで読み込む
 	game->texture.no_img.img = mlx_xpm_file_to_image(\
-	game->mlx, NO_PATH, &width, &height);
+	game->mlx, game->d.tex[TEX_NO], &width, &height);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->texture.no_img.data = (int *)mlx_get_data_addr(\
@@ -81,7 +63,7 @@ void	init_texture(t_game *game)
 		&game->texture.no_img.size_l, &game->texture.no_img.endian);
 
 	game->texture.so_img.img = mlx_xpm_file_to_image(\
-	game->mlx, SO_PATH, &width, &height);
+	game->mlx,game->d.tex[TEX_SO], &width, &height);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->texture.so_img.data = (int *)mlx_get_data_addr(\
@@ -89,7 +71,7 @@ void	init_texture(t_game *game)
 		&game->texture.so_img.size_l, &game->texture.so_img.endian);
 
 	game->texture.ea_img.img = mlx_xpm_file_to_image(\
-	game->mlx, EA_PATH, &width, &height);
+	game->mlx, game->d.tex[TEX_EA], &width, &height);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->texture.ea_img.data = (int *)mlx_get_data_addr(\
@@ -97,7 +79,7 @@ void	init_texture(t_game *game)
 	&game->texture.ea_img.size_l, &game->texture.ea_img.endian);
 
 	game->texture.we_img.img = mlx_xpm_file_to_image(\
-	game->mlx, WE_PATH, &width, &height);
+	game->mlx, game->d.tex[WE], &width, &height);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->texture.we_img.data = (int *)mlx_get_data_addr(\
@@ -107,7 +89,7 @@ void	init_texture(t_game *game)
 
 void	init_img(t_game *game)
 {
-	game->img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	game->img.img = mlx_new_image(game->mlx,WIDTH, HEIGHT);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->img.data = (int *)mlx_get_data_addr(\

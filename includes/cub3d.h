@@ -20,11 +20,11 @@
 # include <string.h>
 # include <fcntl.h>
 # include <float.h>
-
+# include "parser.h"
 # include "../lib/mlx/mlx.h"
 # include "../lib/libft/libft.h"
 # include "error_msg.h"
-
+# include "cub3d.h"
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
 
@@ -161,7 +161,8 @@ typedef struct s_game
 	// TODO: いずれ消す
 	int			floor_color;
 	int			celling_color;
-	int		map[ROWS][COLS];
+	int		**map;
+	t_data d;
 }	t_game;
 
 // move.c

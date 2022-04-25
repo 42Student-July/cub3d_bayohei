@@ -60,14 +60,14 @@ void	init_player_angle(t_game *g, int direction)
 
 void	init_player_coord(t_game *g)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (i < ROWS)
+	while (i < g->d.row)
 	{	
 		j = 0;
-		while (j < COLS)
+		while (j < g->d.col)
 		{
 			if (is_player_position(g->map[i][j]))
 			{

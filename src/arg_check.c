@@ -27,8 +27,10 @@ bool check_exist(char *str)
     return(true);
 }
 
-void arg_check(char *arg)
+void arg_check(int ac, char *arg)
 {
+    if(ac != 2)
+		print_error(USAGE);
     if (arg == NULL ||arg[0] == '\0')
         print_error(ARG_ERROR_NULL);
     if(!check_extension(arg))

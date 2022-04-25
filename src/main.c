@@ -11,12 +11,15 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+#include "parser.h"
 int	main(int argc, char *argv[])
 {
+	t_data	d;
 	t_game	game;
 
-	args_handling(argc, argv);
+	arg_check(argc,argv[1]);
+	parse_file(&d ,argv[1]);
+	game.d = d;
 	init(&game, argv[FILE_PATH]);
 	render(&game);
 	set_hooks(&game);

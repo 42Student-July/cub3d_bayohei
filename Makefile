@@ -28,7 +28,6 @@ SRCNAME	:=	main.c \
 			error_handling.c \
 			init.c \
 			init_2.c \
-			args_handling.c \
 			hooks.c \
 			look.c \
 			arg_check.c \

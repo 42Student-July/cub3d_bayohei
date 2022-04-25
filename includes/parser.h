@@ -57,16 +57,11 @@ typedef struct s_check
     bool ok;
     int cnt;
 }t_check;
-typedef struct s_img
-{
-    int h;
-    int w;
-    void *img;
-}t_img;
+
 typedef struct s_data
 {
     int color[2];
-    t_img *tex_path[4];
+    char  *tex[4];
     // xpm date
     //char player_direction;
     size_t map_start;
@@ -76,7 +71,7 @@ typedef struct s_data
 }t_data;
 
 void print_error(char *err);
-void arg_check(char *av);
+void arg_check(int ac, char *av);
 void parse_file(t_data *d, char *arg);
 void free_null(char **str);
 size_t get_file_size(char *arg);
