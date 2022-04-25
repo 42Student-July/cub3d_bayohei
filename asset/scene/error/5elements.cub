@@ -1,16 +1,7 @@
-NO ./tex/higasi
+NO ./asset/texture/NO.xpm
 
-
-
-
-
-
-
-
-SO ./tex/higasi
-WE ./tex/higasi
-
-
+SO ./asset/texture/SO.xpm
+WE ./asset/texture/WE.xpm
 
 F 220,100,0
 

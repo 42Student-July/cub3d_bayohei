@@ -12,7 +12,7 @@
 11000001110101011111011110N0111
 11110111 1110101 101111010001
 11111111 1111111 111111111111
-NO ./tex/higasi
+NO ./asset/texture/NO.xpm
 
 
 
@@ -21,11 +21,11 @@ NO ./tex/higasi
 
 
 
-SO ./tex/higasi
-WE ./tex/higasi
+SO ./asset/texture/SO.xpm
+WE ./asset/texture/WE.xpm
 
 
-EA ./tex/higasi
+EA ./asset/texture/EA.xpm
 F 220,100,0
 
 C 225,30,0

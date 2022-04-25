@@ -1,4 +1,5 @@
-NO ./tex/higasi
+
+NO ./asset/texture/NO.xpm
 
 
 
@@ -7,11 +8,11 @@ NO ./tex/higasi
 
 
 
-SO ./tex/higasi
-WE ./tex/higasi
+SO ./asset/texture/SO.xpm
+WE ./asset/texture/WE.xpm
 
 
-EA ./tex/higasi
+EA ./asset/texture/EA.xpm
 F 220,100,0
 
 C 225,30,0
