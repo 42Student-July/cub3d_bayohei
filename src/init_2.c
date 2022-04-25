@@ -64,10 +64,10 @@ void	init_player_coord(t_game *g)
 	size_t	j;
 
 	i = 0;
-	while (i < g->d.row)
+	while (g->map[i] != NULL)
 	{	
 		j = 0;
-		while (j < g->d.col)
+		while (g->map[i][j] != END)
 		{
 			if (is_player_position(g->map[i][j]))
 			{
