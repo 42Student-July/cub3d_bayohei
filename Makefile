@@ -56,13 +56,15 @@ RM		:= rm -rf
 DEBUG	:= -g -fsanitize=address
 LDFLAGS := -Llib/gnl -Llib/libft
 LIBS 	:= -lgnl -lft
-
+MLX_NAME = lib/mlx
+MLXD = ./$(MLX_NAME)
+MLX = $(MLXD)/libmlx.a
 UNAME := $(shell uname)
 
 ifeq (${UNAME},Darwin)
 	OPT_MLX = -I/usr/X11/include -Llib/mlx -lmlx_Darwin -L/usr/X11/include/../lib -lXext -lX11 -lm
 else
-	OPT_MLX = -Ilib/mlx -Llib/mlx -lmlx -lXext -lX11 -lm
+	OPT_MLX = -L$(MLX_NAME) -lmlx  -I$(MLX_NAME) -lXext -lX11 -lm
 endif
 
 all: lib ${NAME}
@@ -76,8 +78,8 @@ lib : dummy
 
 dummy:
 
-$(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(INC)  ${LDFLAGS} ${LIBS} $(OPT_MLX) $^ -o $@
+$(NAME) : $(OBJS) 
+	$(CC) $(CFLAGS)  $(INC) $^ ${LDFLAGS} ${LIBS} $(OPT_MLX)  -o $@
 
 $(OBJSDIR)%.o : $(SRCDIR)%.c
 	@if [ ! -d $(OBJSDIR) ]; then mkdir $(OBJSDIR); fi
