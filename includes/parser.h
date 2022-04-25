@@ -30,8 +30,8 @@
 #define TEX_WE 2
 #define TEX_EA 3
 #define ALL_ELEMNT 6
-#define CEIL 1
-#define FLOOR 2
+#define CEIL 0
+#define FLOOR 1
 
 #define TAB 9
 #define WHITESPASE 8

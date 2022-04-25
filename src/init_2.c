@@ -88,6 +88,6 @@ void	init_player_coord(t_game *g)
 
 void	init_color(t_game *game)
 {
-	game->floor_color = GREEN;
-	game->celling_color = SKY_BLUE;
+	game->floor_color = game->d.color[FLOOR];
+	game->celling_color = game->d.color[CEIL];
 }
