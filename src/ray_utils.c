@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:46:31 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 17:47:16 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/25 21:47:45 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ int	map_has_wall_at(t_game *g, double x, double y)
 	int	map_grid_index_x;
 	int	map_grid_index_y;
 
-	if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
+	if (x < 0 || x >= g->d.col * TILE_SIZE || y < 0 || y >= g->d.row * TILE_SIZE)
 		return (true);
 	map_grid_index_x = (int)floor(x / TILE_SIZE);
 	map_grid_index_y = (int)floor(y / TILE_SIZE);
+	printf("map_grid_index_x = %d\n", map_grid_index_x);
+	printf("map_grid_index_y = %d\n", map_grid_index_y);
 	if (g->map[map_grid_index_y][map_grid_index_x] == 1)
 		return (true);
 	return (false);
@@ -75,8 +77,8 @@ void	get_horz_wall_hit(t_game *g, t_ray *ray)
 
 	init_ray_facing(ray, ray->angle);
 	get_horz_step_and_intercept(g, ray);
-	while (ray->next_horz_touch_x >= 0 && ray->next_horz_touch_x <= WIDTH \
-		&& ray->next_horz_touch_y >= 0 && ray->next_horz_touch_y <= HEIGHT)
+	while (ray->next_horz_touch_x >= 0 && ray->next_horz_touch_x <= g->d.col * TILE_SIZE \
+		&& ray->next_horz_touch_y >= 0 && ray->next_horz_touch_y <= g->d.row * TILE_SIZE)
 	{
 		x_to_check = ray->next_horz_touch_x;
 		y_to_check = ray->next_horz_touch_y;
@@ -86,6 +88,10 @@ void	get_horz_wall_hit(t_game *g, t_ray *ray)
 		{
 			ray->horz_wall_hit_x = ray->next_horz_touch_x;
 			ray->horz_wall_hit_y = ray->next_horz_touch_y;
+			printf("ray->is_ray_facing_down = %d\n", ray->is_ray_facing_down);
+			printf("ray->is_ray_facing_left = %d\n", ray->is_ray_facing_left);
+			printf("ray->horz_wall_hit_x  = %f\n", ray->horz_wall_hit_x );
+			printf("ray->horz_wall_hit_y  = %f\n", ray->horz_wall_hit_y );
 			ray->found_horz_wallhit = true;
 			break ;
 		}
@@ -93,6 +99,7 @@ void	get_horz_wall_hit(t_game *g, t_ray *ray)
 		{
 			ray->next_horz_touch_x += ray->xstep;
 			ray->next_horz_touch_y += ray->ystep;
+
 		}
 	}
 }

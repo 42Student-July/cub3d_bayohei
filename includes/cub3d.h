@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 22:50:01 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/25 21:27:52 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 # define WE 4
 # define EA 5
 
-# define MINIMAP_SCALE 0.5
+# define MINIMAP_SCALE 0.2
 # define ROWS 11 
 # define COLS 15
 # define WIDTH COLS * TILE_SIZE

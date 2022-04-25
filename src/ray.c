@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 21:11:33 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/25 21:26:43 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	get_vert_wall_hit(t_game *g, t_ray *ray)
 	double	y_to_check;
 
 	get_vert_step_and_intercept(g, ray);
-	while (ray->next_vert_touch_x >= 0 && ray->next_vert_touch_x <= WIDTH \
-	&& ray->next_vert_touch_y >= 0 && ray->next_vert_touch_y <= HEIGHT)
+	while (ray->next_vert_touch_x >= 0 && ray->next_vert_touch_x <= g->d.col * TILE_SIZE \
+	&& ray->next_vert_touch_y >= 0 && ray->next_vert_touch_y <= g->d.col * TILE_SIZE)
 	{
 		x_to_check = ray->next_vert_touch_x;
 		if (ray->is_ray_facing_left)

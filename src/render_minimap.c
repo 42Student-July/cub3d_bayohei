@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:28:44 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 16:07:26 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/25 21:18:25 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ void	render_minimap(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < ROWS)
+	while (game->map[i] != NULL)
 	{	
 		j = 0;
-		while (j < COLS)
+		while (game->map[i][j] != END)
 		{
 			if (game->map[i][j] == 1)
 				render_wall(game, j, i);
