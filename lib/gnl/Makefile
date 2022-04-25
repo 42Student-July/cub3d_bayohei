@@ -6,7 +6,7 @@
 #    By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 16:44:44 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/25 15:34:06 by wyohei           ###   ########.fr        #
+#    Updated: 2022/04/25 15:42:12 by wyohei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,16 +22,16 @@ CFLAGS = -Wall -Werror -Wextra
 all: ${NAME}
 
 $(NAME) : $(OBJS)
-    ar rcs $(NAME) $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 .c.o:
-    ${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 clean:
-    ${RM} ${OBJS}
+	${RM} ${OBJS}
 
 fclean: clean
-    ${RM} ${NAME} ${OBJS}
-re:        fclean all
+	${RM} ${NAME} ${OBJS}
+re:	fclean all
 
 .PHONY: all clean fclean re .c.o
