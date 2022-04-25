@@ -54,12 +54,12 @@ void	clear_all_rays(t_game *g)
 
 void	render_all_rays(t_game *g)
 {
-	double		rayAngle;
+	//double		rayAngle;
 	int			i;
 	t_grid_dist	grid;
 
 	i = 0;
-	rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
+	//rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
 	while (i < NUM_RAYS)
 	{
 		grid.x1 = g->player->x;

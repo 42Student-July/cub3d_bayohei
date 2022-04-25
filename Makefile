@@ -34,7 +34,7 @@ SRCNAME	:=	main.c \
 			arg_check.c \
 			error_util.c \
 			parser.c \
-			pars_util.c 
+			pars_util.c \
 			pars_util2.c \
 			load_texture.c \
 			pars_color.c \
