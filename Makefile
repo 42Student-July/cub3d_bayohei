@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/20 18:06:50 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/25 15:18:15 by wyohei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,19 @@ SRCNAME	:=	main.c \
 			args_handling.c \
 			hooks.c \
 			look.c \
+			arg_check.c \
+			error_util.c \
+			parser.c \
+			pars_util.c 
+			pars_util2.c \
+			load_texture.c \
+			pars_color.c \
+			libft_util.c \
+			check_elements.c \
+			map_check.c \
+			dfs_map.c\
+			get_map.c
+			
 
 SRCS	:= $(addprefix $(SRCDIR), $(SRCNAME))
 OBJSDIR	:= ./obj/
