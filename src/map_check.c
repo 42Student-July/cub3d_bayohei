@@ -1,4 +1,6 @@
 #include "parser.h"
+#include "cub3d.h"
+#include "error_msg.h"
 bool is_map_char(char *str)
 {
     size_t i;
@@ -20,6 +22,10 @@ bool check_map_size(size_t col,size_t i, size_t row,t_data *d)
     d->map_start = i;
     d->col = col;//yoko
     d->row = row;//takasa
+	if (d->col * TILE_SIZE * MINIMAP_SCALE > WIDTH / 2)
+		exit_with_err_msg(TOO_BIG_MAP);
+	if (d->row * TILE_SIZE * MINIMAP_SCALE > HEIGHT / 2)
+		exit_with_err_msg(TOO_BIG_MAP);
     return (true);
 }
 size_t player_count(char *line)

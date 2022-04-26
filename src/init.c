@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 10:28:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/25 23:46:42 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/26 22:45:08 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	init_texture(t_game *game)
 
 void	init_img(t_game *game)
 {
-
 	game->img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
