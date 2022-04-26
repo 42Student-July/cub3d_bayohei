@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+         #
+#    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/25 15:18:15 by wyohei           ###   ########.fr        #
+#    Updated: 2022/04/25 21:48:52 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJSDIR	:= ./obj/
 OBJS 	:= $(addprefix $(OBJSDIR), $(SRCNAME:%.c=%.o))
 
 CC		:= gcc 
-CFLAGS	:= -Wall -Werror -Wextra
+CFLAGS	:= -Wall -Werror -Wextra -g -fsanitize=address
 INC		:= -I ./includes
 RM		:= rm -rf
 DEBUG	:= -g -fsanitize=address

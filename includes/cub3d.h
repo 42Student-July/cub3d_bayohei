@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/25 21:27:52 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/25 22:03:35 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,6 @@ int		to_coord_minimap(double x, double y);
 int		to_coord(double x, double y);
 int		to_coord_tex(double x, double y);
 double	normalize_angle(double angle);
-int		map_has_wall_at(t_game *g, double x, double y);
 
 // error_handling.c
 void	exit_with_err_msg(char *msg);
@@ -251,7 +250,7 @@ int		calc_offset_x(int wall_hit);
 
 // ray_utils.c
 double	normalize_angle(double angle);
-int		map_has_wall_at(t_game *g, double x, double y);
+int		map_has_wall_at(t_game *g, t_ray *ray, double x, double y);
 void	init_ray_facing(t_ray *ray, double ray_angle);
 void	get_horz_step_and_intercept(t_game *g, t_ray *ray);
 void	get_horz_wall_hit(t_game *g, t_ray *ray);

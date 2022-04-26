@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:46:31 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/25 21:47:45 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:29:53 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,48 @@ double	normalize_angle(double angle)
 	return (angle);
 }
 
-int	map_has_wall_at(t_game *g, double x, double y)
+int	get_horz_max(t_game *g, int y)
+{
+	int	i;
+
+	i = 0;
+	while (g->map[y][i] < END)
+		i++;
+	return (i);
+}
+
+// int	get_vert_max(t_game *g, int y)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (g->map[i][y] == NULL || i < g->d.row)
+// 	{
+		
+// 	}
+	
+// }
+
+
+
+int	map_has_wall_at(t_game *g, t_ray *ray, double x, double y)
 {
 	int	map_grid_index_x;
 	int	map_grid_index_y;
+	int	map_horz_max;
+	int	map_vert_max;
+	(void)ray;
+	(void)map_vert_max;
 
-	if (x < 0 || x >= g->d.col * TILE_SIZE || y < 0 || y >= g->d.row * TILE_SIZE)
+	if (x < 0 || x >= (double)(g->d.col * TILE_SIZE) || y < 0 || y >= (double)(g->d.row * TILE_SIZE))
 		return (true);
 	map_grid_index_x = (int)floor(x / TILE_SIZE);
 	map_grid_index_y = (int)floor(y / TILE_SIZE);
-	printf("map_grid_index_x = %d\n", map_grid_index_x);
-	printf("map_grid_index_y = %d\n", map_grid_index_y);
+	map_horz_max = get_horz_max(g, map_grid_index_y);
+	if (map_grid_index_x > map_horz_max)
+		return (true);
+	if (map_grid_index_x < 0 || map_grid_index_x > (int)(g->d.col) || map_grid_index_y < 0 || map_grid_index_y > (int)(g->d.row))
+		return (true);
 	if (g->map[map_grid_index_y][map_grid_index_x] == 1)
 		return (true);
 	return (false);
@@ -59,6 +90,7 @@ void	get_horz_step_and_intercept(t_game *g, t_ray *ray)
 	ray->ystep = TILE_SIZE;
 	if (ray->is_ray_facing_up)
 		ray->ystep *= -1;
+	// step数がでかすぎて貫通している説
 	ray->xstep = TILE_SIZE / tan(ray->angle);
 	if (ray->is_ray_facing_left && ray->xstep > 0)
 		ray->xstep *= -1;
@@ -84,14 +116,15 @@ void	get_horz_wall_hit(t_game *g, t_ray *ray)
 		y_to_check = ray->next_horz_touch_y;
 		if (ray->is_ray_facing_up)
 			y_to_check += -1;
-		if (map_has_wall_at(g, x_to_check, y_to_check))
+		if (map_has_wall_at(g, ray, x_to_check, y_to_check))
 		{
 			ray->horz_wall_hit_x = ray->next_horz_touch_x;
 			ray->horz_wall_hit_y = ray->next_horz_touch_y;
-			printf("ray->is_ray_facing_down = %d\n", ray->is_ray_facing_down);
-			printf("ray->is_ray_facing_left = %d\n", ray->is_ray_facing_left);
-			printf("ray->horz_wall_hit_x  = %f\n", ray->horz_wall_hit_x );
-			printf("ray->horz_wall_hit_y  = %f\n", ray->horz_wall_hit_y );
+			// printf("ray->angle = %lf\n", ray->angle);
+			// printf("ray->is_ray_facing_down = %d\n", ray->is_ray_facing_down);
+			// printf("ray->is_ray_facing_left = %d\n", ray->is_ray_facing_left);
+			// printf("ray->horz_wall_hit_x  = %f\n", ray->horz_wall_hit_x);
+			// printf("ray->horz_wall_hit_y  = %f\n", ray->horz_wall_hit_y);
 			ray->found_horz_wallhit = true;
 			break ;
 		}
