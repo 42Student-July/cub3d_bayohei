@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:56:29 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 16:07:40 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/26 22:03:40 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 void	init_player(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	game->player = (t_player *)malloc(sizeof(t_player));
 	if (game->player == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
-	game->player->ray = (t_ray **)malloc(sizeof(t_ray *) * NUM_RAYS);
+	game->player->ray = (t_ray **)xmalloc(sizeof(t_ray *) * NUM_RAYS);
+	while (i < NUM_RAYS)
+	{
+		game->player->ray[i] = (t_ray *)xmalloc(sizeof(t_ray));
+		i++;
+	}
 	if (game->player->ray == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	init_player_coord(game);

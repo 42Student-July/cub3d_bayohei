@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:36:50 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 22:50:20 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/26 22:07:10 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 void	cast_all_rays(t_game *g)
 {
-	double	rayAngle;
+	double	ray_angle;
 	int		i;
 
 	i = 0;
-	rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
+	ray_angle = g->player->rotate_angle - (FOV_ANGLE / 2);
 	while (i < NUM_RAYS)
 	{
-		g->player->ray[i] = (t_ray *)malloc(sizeof(t_ray));
-		g->player->ray[i]->angle = rayAngle;
+		g->player->ray[i]->angle = ray_angle;
 		cast_ray(g, g->player->ray[i]);
-		rayAngle += FOV_ANGLE / (NUM_RAYS);
+		ray_angle += FOV_ANGLE / (NUM_RAYS);
 		i++;
 	}
 }
@@ -46,20 +45,16 @@ void	clear_all_rays(t_game *g)
 			grid,
 			BLACK
 			);
-		free(g->player->ray[i]);
-		g->player->ray[i] = NULL;
 		i++;
 	}
 }
 
 void	render_all_rays(t_game *g)
 {
-	//double		rayAngle;
 	int			i;
 	t_grid_dist	grid;
 
 	i = 0;
-	//rayAngle = g->player->rotate_angle - (FOV_ANGLE / 2);
 	while (i < NUM_RAYS)
 	{
 		grid.x1 = g->player->x;
