@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:56:29 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/26 22:03:40 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/26 22:50:25 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	init_player_coord(t_game *g)
 		{
 			if (is_player_position(g->map[i][j]))
 			{
-				g->player->x = j * TILE_SIZE - TILE_SIZE / 2;
-				g->player->y = i * TILE_SIZE - TILE_SIZE / 2;
+				g->player->x = j * TILE_SIZE + TILE_SIZE / 2;
+				g->player->y = i * TILE_SIZE + TILE_SIZE / 2;
 				g->player->x_draw_start = g->player->x - PLAYER_SIZE / 2;
 				g->player->y_draw_start = g->player->y - PLAYER_SIZE / 2;
 				g->player->x_draw_end = g->player->x_draw_start + PLAYER_SIZE;
