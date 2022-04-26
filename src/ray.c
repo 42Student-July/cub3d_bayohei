@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/25 23:25:01 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/26 22:08:34 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,11 @@ void	get_vert_wall_hit(t_game *g, t_ray *ray)
 		if (ray->is_ray_facing_left)
 			x_to_check += -1;
 		y_to_check = ray->next_vert_touch_y;
-		if (map_has_wall_at(g, ray,x_to_check, y_to_check))
+		if (map_has_wall_at(g, x_to_check, y_to_check))
 		{
 			ray->vert_wall_hit_x = ray->next_vert_touch_x;
 			ray->vert_wall_hit_y = ray->next_vert_touch_y;
 			ray->found_vert_wallhit = true;
-			// printf("ray->angle = %lf\n", ray->angle);
-			// printf("ray->is_ray_facing_down = %d\n", ray->is_ray_facing_down);
-			// printf("ray->is_ray_facing_left = %d\n", ray->is_ray_facing_left);
-			// printf("ray->vert_wall_hit_x  = %f\n", ray->vert_wall_hit_x);
-			// printf("ray->vert_wall_hit_y  = %f\n", ray->vert_wall_hit_y);
 			break ;
 		}
 		else

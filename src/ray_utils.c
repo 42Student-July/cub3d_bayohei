@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:46:31 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/26 10:29:53 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/26 22:12:07 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,11 @@ int	get_horz_max(t_game *g, int y)
 	return (i);
 }
 
-// int	get_vert_max(t_game *g, int y)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (g->map[i][y] == NULL || i < g->d.row)
-// 	{
-		
-// 	}
-	
-// }
-
-
-
-int	map_has_wall_at(t_game *g, t_ray *ray, double x, double y)
+int	map_has_wall_at(t_game *g, double x, double y)
 {
 	int	map_grid_index_x;
 	int	map_grid_index_y;
 	int	map_horz_max;
-	int	map_vert_max;
-	(void)ray;
-	(void)map_vert_max;
 
 	if (x < 0 || x >= (double)(g->d.col * TILE_SIZE) || y < 0 || y >= (double)(g->d.row * TILE_SIZE))
 		return (true);
@@ -116,15 +99,10 @@ void	get_horz_wall_hit(t_game *g, t_ray *ray)
 		y_to_check = ray->next_horz_touch_y;
 		if (ray->is_ray_facing_up)
 			y_to_check += -1;
-		if (map_has_wall_at(g, ray, x_to_check, y_to_check))
+		if (map_has_wall_at(g, x_to_check, y_to_check))
 		{
 			ray->horz_wall_hit_x = ray->next_horz_touch_x;
 			ray->horz_wall_hit_y = ray->next_horz_touch_y;
-			// printf("ray->angle = %lf\n", ray->angle);
-			// printf("ray->is_ray_facing_down = %d\n", ray->is_ray_facing_down);
-			// printf("ray->is_ray_facing_left = %d\n", ray->is_ray_facing_left);
-			// printf("ray->horz_wall_hit_x  = %f\n", ray->horz_wall_hit_x);
-			// printf("ray->horz_wall_hit_y  = %f\n", ray->horz_wall_hit_y);
 			ray->found_horz_wallhit = true;
 			break ;
 		}
