@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:09:06 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/20 15:15:31 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:51:14 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,104 @@
 
 void	move_forward(t_game *g)
 {
-	if (g->player->direction == NO)
-		move_north(g);
-	else if (g->player->direction == SO)
-		move_south(g);
-	else if (g->player->direction == WE)
-		move_west(g);
-	else if (g->player->direction == EA)
-		move_east(g);
+	int		i;
+	int		x;
+	int		y;
+
+	i = 0;
+	clear_3d(g);
+	while (i < PLAYER_SIZE)
+	{
+		g->img.data[to_coord_minimap(\
+		g->player->x_draw_start + i, g->player->y_draw_end)] = BLACK;
+		i++;
+	}
+	x = (int)(PLAYER_MOVE_PIXEL * cos(g->player->rotate_angle));
+	y = (int)(PLAYER_MOVE_PIXEL * sin(g->player->rotate_angle));
+	g->player->x_draw_start += x;
+	g->player->x_draw_end += x;
+	g->player->x += x;
+	g->player->y_draw_start += y;
+	g->player->y_draw_end += y;
+	g->player->y += y;
+	render_player(g);
+	render_vision(g);
 }
 
 void	move_right(t_game *g)
 {
-	if (g->player->direction == NO)
-		move_east(g);
-	else if (g->player->direction == SO)
-		move_west(g);
-	else if (g->player->direction == WE)
-		move_north(g);
-	else if (g->player->direction == EA)
-		move_south(g);
+	int		i;
+	int		x;
+	int		y;
+
+	i = 0;
+	clear_3d(g);
+	while (i < PLAYER_SIZE)
+	{
+		g->img.data[to_coord_minimap(\
+		g->player->x_draw_start + i, g->player->y_draw_end)] = BLACK;
+		i++;
+	}
+	x = (int)(PLAYER_MOVE_PIXEL * cos(g->player->rotate_angle + (M_PI / 2)));
+	y = (int)(PLAYER_MOVE_PIXEL * sin(g->player->rotate_angle + (M_PI / 2)));
+	g->player->x_draw_start += x;
+	g->player->x_draw_end += x;
+	g->player->x += x;
+	g->player->y_draw_start += y;
+	g->player->y_draw_end += y;
+	g->player->y += y;
+	render_player(g);
+	render_vision(g);
 }
 
 void	move_left(t_game *g)
 {
-	if (g->player->direction == NO)
-		move_west(g);
-	else if (g->player->direction == SO)
-		move_east(g);
-	else if (g->player->direction == WE)
-		move_south(g);
-	else if (g->player->direction == EA)
-		move_north(g);
+	int		i;
+	int		x;
+	int		y;
+
+	i = 0;
+	clear_3d(g);
+	while (i < PLAYER_SIZE)
+	{
+		g->img.data[to_coord_minimap(\
+		g->player->x_draw_start + i, g->player->y_draw_end)] = BLACK;
+		i++;
+	}
+	x = PLAYER_MOVE_PIXEL * cos(g->player->rotate_angle + (M_PI * 3 / 2));
+	y = PLAYER_MOVE_PIXEL * sin(g->player->rotate_angle + (M_PI * 3 / 2));
+	g->player->x_draw_start += x;
+	g->player->x_draw_end += x;
+	g->player->x += x;
+	g->player->y_draw_start += y;
+	g->player->y_draw_end += y;
+	g->player->y += y;
+	render_player(g);
+	render_vision(g);
 }
 
 void	move_back(t_game *g)
 {
-	if (g->player->direction == NO)
-		move_south(g);
-	else if (g->player->direction == SO)
-		move_north(g);
-	else if (g->player->direction == WE)
-		move_east(g);
-	else if (g->player->direction == EA)
-		move_west(g);
+	int		i;
+	int		x;
+	int		y;
+
+	i = 0;
+	clear_3d(g);
+	while (i < PLAYER_SIZE)
+	{
+		g->img.data[to_coord_minimap(\
+		g->player->x_draw_start + i, g->player->y_draw_end)] = BLACK;
+		i++;
+	}
+	x = (int)(PLAYER_MOVE_PIXEL * cos(g->player->rotate_angle + M_PI));
+	y = (int)(PLAYER_MOVE_PIXEL * sin(g->player->rotate_angle + M_PI));
+	g->player->x_draw_start += x;
+	g->player->x_draw_end += x;
+	g->player->x += x;
+	g->player->y_draw_start += y;
+	g->player->y_draw_end += y;
+	g->player->y += y;
+	render_player(g);
+	render_vision(g);
 }

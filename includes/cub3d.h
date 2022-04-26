@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/25 22:03:35 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:36:57 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 # define TILE_SIZE 32
 # define PLAYER_SIZE 6
-# define PLAYER_MOVE_PIXEL 1
+# define PLAYER_MOVE_PIXEL 5
 # define PLAYER_LOOK_DEGREE 1
 # define TEXTURE_HEIGHT 50
 # define TEXTURE_WIDTH 50
