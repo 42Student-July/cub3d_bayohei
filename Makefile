@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/25 21:48:52 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/26 22:56:05 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJSDIR	:= ./obj/
 OBJS 	:= $(addprefix $(OBJSDIR), $(SRCNAME:%.c=%.o))
 
 CC		:= gcc 
-CFLAGS	:= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS	:= -Wall -Werror -Wextra
 INC		:= -I ./includes
 RM		:= rm -rf
 DEBUG	:= -g -fsanitize=address
@@ -97,9 +97,5 @@ fclean: clean
 	${RM} lib/mlx/libmlx_Linux.a
 	${RM} ${NAME} 
 re:	fclean all
-
-.PHONY: debug
-debug:	CFLAGS += $(DEBUG)
-debug:	re
 
 .PHONY: all clean fclean re
