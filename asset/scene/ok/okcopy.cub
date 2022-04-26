@@ -6,15 +6,16 @@ NO ./asset/texture/NO.xpm
 
 
 
-
+EA ./asset/texture/EA.xpm
 SO ./asset/texture/SO.xpm
 WE ./asset/texture/WE.xpm
 
 
-EA ./asset/texture/EA.xpm
+
+
 F 220,100,0
 
-C 225,30,0
+C  225,30,0
 
 111111111111111
 100000000000001

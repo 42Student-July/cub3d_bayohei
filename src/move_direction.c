@@ -17,7 +17,7 @@ void	move_north(t_game *g)
 	int	i;
 
 	i = 0;
-	clear_3d(g);
+	//clear_3d(g);
 	while (i < PLAYER_SIZE)
 	{
 		g->img.data[to_coord_minimap(\

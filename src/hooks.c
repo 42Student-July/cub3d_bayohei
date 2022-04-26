@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+#include "parser.h"
 int	deal_key(int key_code, t_game *game)
 {
 	printf("key_code = %d\n", key_code);
@@ -53,7 +53,7 @@ int	render(t_game *game)
 
 int	close_game(t_game *game)
 {
-	(void)game;
+	clear_all_rays(game);
 	exit(0);
 }
 
