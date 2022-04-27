@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/27 18:08:36 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/27 21:33:18 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,5 +257,7 @@ void	get_horz_wall_hit(t_game *g, t_ray *ray);
 void	get_vert_wall_hit(t_game *g, t_ray *ray);
 void	get_horz_step_and_intercept(t_game *g, t_ray *ray);
 void	get_vert_step_and_intercept(t_game *g, t_ray *ray);
+int		*get_data_addr(t_img *i);
+
 
 #endif

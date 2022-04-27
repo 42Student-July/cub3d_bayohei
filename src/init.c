@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 10:28:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/27 17:40:47 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/27 21:37:42 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,22 @@ void	init_texture(t_game *game)
 	game->mlx, game->d.tex[TEX_NO], &width, &height);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
-	game->texture.no_img.data = (int *)mlx_get_data_addr(\
-		game->texture.no_img.img, &game->texture.no_img.bpp, \
-		&game->texture.no_img.size_l, &game->texture.no_img.endian);
+	game->texture.no_img.data = get_data_addr(&game->texture.no_img);
 	game->texture.so_img.img = mlx_xpm_file_to_image(\
 	game->mlx, game->d.tex[TEX_SO], &width, &height);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
-	game->texture.so_img.data = (int *)mlx_get_data_addr(\
-		game->texture.so_img.img, &game->texture.so_img.bpp, \
-		&game->texture.so_img.size_l, &game->texture.so_img.endian);
+	game->texture.so_img.data = get_data_addr(&game->texture.so_img);
 	game->texture.ea_img.img = mlx_xpm_file_to_image(\
 	game->mlx, game->d.tex[TEX_EA], &width, &height);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
-	game->texture.ea_img.data = (int *)mlx_get_data_addr(\
-		game->texture.ea_img.img, &game->texture.ea_img.bpp, \
-	&game->texture.ea_img.size_l, &game->texture.ea_img.endian);
+	game->texture.ea_img.data = get_data_addr(&game->texture.ea_img);
 	game->texture.we_img.img = mlx_xpm_file_to_image(\
 	game->mlx, game->d.tex[TEX_WE], &width, &height);
 	if (game->img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
-	game->texture.we_img.data = (int *)mlx_get_data_addr(\
-		game->texture.we_img.img, &game->texture.we_img.bpp, \
-		&game->texture.we_img.size_l, &game->texture.we_img.endian);
+	game->texture.we_img.data = get_data_addr(&game->texture.we_img);
 }
 
 void	init_img(t_game *game)

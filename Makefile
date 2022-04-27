@@ -6,7 +6,7 @@
 #    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/27 18:07:05 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/27 21:32:44 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCNAME	:=	main.c \
 			dfs_map.c\
 			get_map.c \
 			ray_utils_2.c \
+			init_3.c \
 			
 
 SRCS	:= $(addprefix $(SRCDIR), $(SRCNAME))
