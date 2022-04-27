@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:15:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/25 21:32:21 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:36:52 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	render(t_game *game)
 	generate_3d(game);
 	render_minimap(game);
 	render_vision(game);
-	// render_lines(game);
 	render_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);

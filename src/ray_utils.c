@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:46:31 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/26 22:12:07 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/27 18:05:18 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,16 @@ int	map_has_wall_at(t_game *g, double x, double y)
 	int	map_grid_index_y;
 	int	map_horz_max;
 
-	if (x < 0 || x >= (double)(g->d.col * TILE_SIZE) || y < 0 || y >= (double)(g->d.row * TILE_SIZE))
+	if (x < 0 || x >= (double)(g->d.col * TILE_SIZE) \
+	|| y < 0 || y >= (double)(g->d.row * TILE_SIZE))
 		return (true);
 	map_grid_index_x = (int)floor(x / TILE_SIZE);
 	map_grid_index_y = (int)floor(y / TILE_SIZE);
 	map_horz_max = get_horz_max(g, map_grid_index_y);
 	if (map_grid_index_x > map_horz_max)
 		return (true);
-	if (map_grid_index_x < 0 || map_grid_index_x > (int)(g->d.col) || map_grid_index_y < 0 || map_grid_index_y > (int)(g->d.row))
+	if (map_grid_index_x < 0 || map_grid_index_x > (int)(g->d.col) \
+	|| map_grid_index_y < 0 || map_grid_index_y > (int)(g->d.row))
 		return (true);
 	if (g->map[map_grid_index_y][map_grid_index_x] == 1)
 		return (true);
@@ -73,7 +75,6 @@ void	get_horz_step_and_intercept(t_game *g, t_ray *ray)
 	ray->ystep = TILE_SIZE;
 	if (ray->is_ray_facing_up)
 		ray->ystep *= -1;
-	// step数がでかすぎて貫通している説
 	ray->xstep = TILE_SIZE / tan(ray->angle);
 	if (ray->is_ray_facing_left && ray->xstep > 0)
 		ray->xstep *= -1;
@@ -83,34 +84,4 @@ void	get_horz_step_and_intercept(t_game *g, t_ray *ray)
 	ray->next_horz_touch_y = ray->yintercept;
 	ray->horz_wall_hit_x = 0;
 	ray->horz_wall_hit_y = 0;
-}
-
-void	get_horz_wall_hit(t_game *g, t_ray *ray)
-{
-	double	x_to_check;
-	double	y_to_check;
-
-	init_ray_facing(ray, ray->angle);
-	get_horz_step_and_intercept(g, ray);
-	while (ray->next_horz_touch_x >= 0 && ray->next_horz_touch_x <= g->d.col * TILE_SIZE \
-		&& ray->next_horz_touch_y >= 0 && ray->next_horz_touch_y <= g->d.row * TILE_SIZE)
-	{
-		x_to_check = ray->next_horz_touch_x;
-		y_to_check = ray->next_horz_touch_y;
-		if (ray->is_ray_facing_up)
-			y_to_check += -1;
-		if (map_has_wall_at(g, x_to_check, y_to_check))
-		{
-			ray->horz_wall_hit_x = ray->next_horz_touch_x;
-			ray->horz_wall_hit_y = ray->next_horz_touch_y;
-			ray->found_horz_wallhit = true;
-			break ;
-		}
-		else
-		{
-			ray->next_horz_touch_x += ray->xstep;
-			ray->next_horz_touch_y += ray->ystep;
-
-		}
-	}
 }

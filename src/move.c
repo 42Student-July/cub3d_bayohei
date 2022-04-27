@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:09:06 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/26 22:19:26 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:37:44 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	update_grid(t_game *g, int x, int y)
 	g->player->y_draw_end += y;
 	g->player->y += y;
 }
-
 
 void	move_forward(t_game *g)
 {

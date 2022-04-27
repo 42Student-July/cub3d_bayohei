@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:17:16 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/18 16:53:59 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:37:04 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	main(int argc, char *argv[])
 	t_data	d;
 	t_game	game;
 
-	arg_check(argc,argv[1]);
-	parse_file(&d ,argv[1]);
+	arg_check(argc, argv[1]);
+	parse_file(&d, argv[1]);
 	game.d = d;
 	init(&game);
 	render(&game);

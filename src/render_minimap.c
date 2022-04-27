@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:28:44 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/26 22:34:11 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:49:38 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ void	render_minimap(t_game *game)
 		{
 			if (game->map[i][j] == 1)
 				render_wall(game, j, i);
-			else if (game->map[i][j] == 0)
+			else if (game->map[i][j] == 0 || game->map[i][j] == NO || \
+			game->map[i][j] == SO || game->map[i][j] == EA \
+			|| game->map[i][j] == WE)
 				render_ground(game, j, i);
 			j++;
 		}

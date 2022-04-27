@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:24:43 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/26 22:08:34 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/27 18:17:02 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,6 @@ void	get_vert_step_and_intercept(t_game *g, t_ray *ray)
 		ray->ystep *= -1;
 	ray->next_vert_touch_x = ray->xintercept;
 	ray->next_vert_touch_y = ray->yintercept;
-}
-
-void	get_vert_wall_hit(t_game *g, t_ray *ray)
-{
-	double	x_to_check;
-	double	y_to_check;
-
-	get_vert_step_and_intercept(g, ray);
-	while (ray->next_vert_touch_x >= 0 && ray->next_vert_touch_x <= g->d.col * TILE_SIZE \
-	&& ray->next_vert_touch_y >= 0 && ray->next_vert_touch_y <= g->d.col * TILE_SIZE)
-	{
-		x_to_check = ray->next_vert_touch_x;
-		if (ray->is_ray_facing_left)
-			x_to_check += -1;
-		y_to_check = ray->next_vert_touch_y;
-		if (map_has_wall_at(g, x_to_check, y_to_check))
-		{
-			ray->vert_wall_hit_x = ray->next_vert_touch_x;
-			ray->vert_wall_hit_y = ray->next_vert_touch_y;
-			ray->found_vert_wallhit = true;
-			break ;
-		}
-		else
-		{
-			ray->next_vert_touch_x += ray->xstep;
-			ray->next_vert_touch_y += ray->ystep;
-		}
-	}
 }
 
 double	calc_distance_horz(t_game *g, t_ray *ray)
@@ -90,19 +62,25 @@ double	calc_distance_vert(t_game *g, t_ray *ray)
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
+void	calc_dist(t_game *g, t_ray *ray, double *horz_dist, double *vert_dist)
+{
+	*horz_dist = DBL_MAX;
+	*vert_dist = DBL_MAX;
+	if (ray->found_horz_wallhit)
+		*horz_dist = calc_distance_horz(g, ray);
+	if (ray->found_vert_wallhit)
+		*vert_dist = calc_distance_vert(g, ray);
+}
+
 void	cast_ray(t_game *g, t_ray *ray)
 {
 	double	horz_hit_distance;
 	double	vert_hit_distance;
 
-	horz_hit_distance = DBL_MAX;
-	vert_hit_distance = DBL_MAX;
+	init_ray_facing(ray, ray->angle);
 	get_horz_wall_hit(g, ray);
 	get_vert_wall_hit(g, ray);
-	if (ray->found_horz_wallhit)
-		horz_hit_distance = calc_distance_horz(g, ray);
-	if (ray->found_vert_wallhit)
-		vert_hit_distance = calc_distance_vert(g, ray);
+	calc_dist(g, ray, &horz_hit_distance, &vert_hit_distance);
 	if (horz_hit_distance < vert_hit_distance)
 	{
 		ray->dist = horz_hit_distance;
