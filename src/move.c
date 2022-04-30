@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:09:06 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/27 17:37:44 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/30 06:39:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	move_forward(t_game *g)
 	if (map_has_wall_at(\
 	g, g->player->x_draw_end + x, g->player->y_draw_end + y))
 		return ;
-	clear_3d(g);
 	while (i < PLAYER_SIZE)
 	{
 		g->img.data[to_coord_minimap(\
@@ -64,7 +63,6 @@ void	move_right(t_game *g)
 	if (map_has_wall_at(\
 	g, g->player->x_draw_end + x, g->player->y_draw_end + y))
 		return ;
-	clear_3d(g);
 	while (i < PLAYER_SIZE)
 	{
 		g->img.data[to_coord_minimap(\
@@ -91,7 +89,6 @@ void	move_left(t_game *g)
 	if (map_has_wall_at(\
 	g, g->player->x_draw_end + x, g->player->y_draw_end + y))
 		return ;
-	clear_3d(g);
 	while (i < PLAYER_SIZE)
 	{
 		g->img.data[to_coord_minimap(\
@@ -118,7 +115,6 @@ void	move_back(t_game *g)
 	if (map_has_wall_at(\
 	g, g->player->x_draw_end + x, g->player->y_draw_end + y))
 		return ;
-	clear_3d(g);
 	while (i < PLAYER_SIZE)
 	{
 		g->img.data[to_coord_minimap(\
