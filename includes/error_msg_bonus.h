@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   error_msg_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 19:08:01 by wyohei            #+#    #+#             */
-/*   Updated: 2022/04/30 16:25:16 by mhirabay         ###   ########.fr       */
+/*   Created: 2022/04/12 17:08:06 by mhirabay          #+#    #+#             */
+/*   Updated: 2022/04/30 16:03:10 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef ERROR_MSG_BONUS_H
+# define ERROR_MSG_BONUS_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stddef.h>
-# include <limits.h>
-# include <stdio.h>
-# define BUFFER_SIZE 42
+# define READ_FILE_ERROR "invalid cub path"
+# define MALLOC_ERROR "malloc error"
+# define TOO_BIG_MAP "too big map"
 
-size_t	ft_len(const char *s);
-char	*ft_sub(char const *s, size_t start, size_t len);
-char	*ft_join(char const *s1, char const *s2);
-char	*ft_chr(const char *s, int c);
-char	*get_next_line(int fd);
-char	*no_newline(char **save);
 #endif
