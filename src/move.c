@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:09:06 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 13:50:30 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/30 07:36:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	move_forward(t_game *g)
 		i++;
 	}
 	update_grid(g, x, y);
-	render_player(g);
-	render_vision(g);
 }
 
 void	move_right(t_game *g)
@@ -88,8 +86,6 @@ void	move_right(t_game *g)
 		i++;
 	}
 	update_grid(g, x, y);
-	render_player(g);
-	render_vision(g);
 }
 
 void	move_left(t_game *g)
@@ -114,8 +110,6 @@ void	move_left(t_game *g)
 		i++;
 	}
 	update_grid(g, x, y);
-	render_player(g);
-	render_vision(g);
 }
 
 void	move_back(t_game *g)
@@ -140,7 +134,5 @@ void	move_back(t_game *g)
 		i++;
 	}
 	update_grid(g, x, y);
-	render_player(g);
-	render_vision(g);
 }
 
