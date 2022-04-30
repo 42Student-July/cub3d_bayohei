@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:09:06 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 07:36:23 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/30 14:41:48 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	update_grid(t_game *g, int x, int y)
 	g->player->y += y;
 }
 
-bool	calc_x_and_y(t_game *g, int *x, int *y)
+bool	calc_x_and_y(t_game *g)
 {
 	int	i;
 	int	j;
@@ -36,13 +36,14 @@ bool	calc_x_and_y(t_game *g, int *x, int *y)
 		i = a * cos(g->player->rotate_angle);
 		j = b * sin(g->player->rotate_angle);
 		if (map_has_wall_at(\
-	g, g->player->x_draw_end + i, g->player->y_draw_end + j))
+			g, g->player->x_draw_start + i, g->player->y_draw_start + j))
+			return (true);
+		if (map_has_wall_at(\
+			g, g->player->x_draw_end + i, g->player->y_draw_end + j))
 			return (true);
 		a++;
 		b++;
 	}
-	*x = i;
-	*y = j;
 	return (false);
 }
 
@@ -53,8 +54,10 @@ void	move_forward(t_game *g)
 	int		y;
 
 	i = 0;
-	if (calc_x_and_y(g, &x, &y))
+	if (calc_x_and_y(g))
 		return ;
+	x = (int)(PLAYER_MOVE_PIXEL * cos(g->player->rotate_angle));
+	y = (int)(PLAYER_MOVE_PIXEL * sin(g->player->rotate_angle));
 	while (i < PLAYER_SIZE)
 	{
 		g->img.data[to_coord_minimap(\
