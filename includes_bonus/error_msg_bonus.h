@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handling_bonus.c                             :+:      :+:    :+:   */
+/*   error_msg_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 16:56:04 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 16:13:22 by mhirabay         ###   ########.fr       */
+/*   Created: 2022/04/12 17:08:06 by mhirabay          #+#    #+#             */
+/*   Updated: 2022/04/30 16:03:10 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#ifndef ERROR_MSG_BONUS_H
+# define ERROR_MSG_BONUS_H
 
-void	exit_with_err_msg(char *msg)
-{
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-	ft_putstr_fd(msg, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
+# define READ_FILE_ERROR "invalid cub path"
+# define MALLOC_ERROR "malloc error"
+# define TOO_BIG_MAP "too big map"
+
+#endif

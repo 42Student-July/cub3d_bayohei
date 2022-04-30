@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:46:55 by user42            #+#    #+#             */
-/*   Updated: 2022/04/26 16:47:37 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/30 16:14:01 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include "cub3d.h"
-#include "error_msg.h"
+#include "parser_bonus.h"
+#include "cub3d_bonus.h"
+#include "error_msg_bonus.h"
 bool	is_map_char(char *str)
 {
 	size_t	i;

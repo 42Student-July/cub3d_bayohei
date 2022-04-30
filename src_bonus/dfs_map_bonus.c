@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dfs_map.c                                          :+:      :+:    :+:   */
+/*   dfs_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:03:53 by user42            #+#    #+#             */
-/*   Updated: 2022/04/26 16:11:08 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/30 16:13:36 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "parser_bonus.h"
 void	coner_check(int h, int w, int **memo, bool *check)
 {
 	if (w < 1 || h < 1 || memo[h + 1] == NULL || memo[h][w + 1] == END)

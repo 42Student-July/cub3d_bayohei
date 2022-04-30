@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:15:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 13:48:28 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/30 16:13:36 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "parser.h"
+#include "cub3d_bonus.h"
+#include "parser_bonus.h"
 
 int	deal_key(int key_code, t_game *game)
 {

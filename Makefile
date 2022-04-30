@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
+#    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/30 08:56:57 by user42           ###   ########.fr        #
+#    Updated: 2022/04/30 16:18:12 by mhirabay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCNAME :=	main.c \
 			ray_utils_2.c \
 			init_3.c \
 			move_utils.c
+
 SRC_NAME_BONUS	:=	main_bonus.c \
 			move_bonus.c \
 			move_direction_bonus.c \
@@ -86,11 +87,12 @@ OBJSDIR	:= ./obj/
 OBJS 	:= $(addprefix $(OBJSDIR), $(SRCNAME:%.c=%.o))
 
 SRCS_BONUS	:= $(addprefix $(SRC_BONUS_DIR), $(SRC_NAME_BONUS))
-OBJSDIR	:= ./obj/
 OBJS_BONUS 	:= $(addprefix $(OBJSDIR), $(SRC_NAME_BONUS:%.c=%.o))
+
 CC		:= gcc 
-CFLAGS	:= -Wall -Werror -Wextra #-g -fsanitize=address
+CFLAGS	:= -Wall -Werror -Wextra
 INC		:= -I ./includes
+INC_BONUS := -I ./includes_bonus
 RM		:= rm -rf
 DEBUG	:= -g -fsanitize=address
 LDFLAGS := -Llib/gnl -Llib/libft
@@ -104,6 +106,10 @@ ifeq (${UNAME},Darwin)
 	OPT_MLX = -I/usr/X11/include -Llib/mlx -lmlx_Darwin -L/usr/X11/include/../lib -lXext -lX11 -lm
 else
 	OPT_MLX = -L$(MLX_NAME) -lmlx  -I$(MLX_NAME) -lXext -lX11 -lm
+endif
+
+ifdef WITH_BONUS
+	OBJS = $(OBJS_BONUS)
 endif
 
 all: lib ${NAME}
@@ -123,8 +129,12 @@ $(NAME) : $(OBJS)
 $(OBJSDIR)%.o : $(SRCDIR)%.c
 	@if [ ! -d $(OBJSDIR) ]; then mkdir $(OBJSDIR); fi
 	${CC} ${CFLAGS} $(INC) -c $< -o $@
-bonus:
-	
+bonus: lib
+	make WITH_BONUS=1
+
+$(OBJSDIR)%.o : $(SRC_BONUS_DIR)%.c
+	@if [ ! -d $(OBJSDIR) ]; then mkdir $(OBJSDIR); fi
+	${CC} ${CFLAGS} $(INC_BONUS) -c $< -o $@
 
 clean:
 	make clean -C lib/gnl
