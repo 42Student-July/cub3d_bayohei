@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 16:44:44 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/25 15:42:12 by wyohei           ###   ########.fr        #
+#    Updated: 2022/04/30 09:28:13 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libgnl.a
 
-SRCS = get_next_line.c get_next_line_utils.c
+SRCS = get_next_line.c get_next_line_utils.c util.c
 OBJS = ${SRCS:.c=.o}
 
 $(NAME) : $(OBJS)
