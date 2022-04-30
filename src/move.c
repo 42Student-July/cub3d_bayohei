@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:09:06 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 06:39:37 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/30 13:45:45 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,7 @@ void	move_forward(t_game *g)
 	int		y;
 
 	i = 0;
-	x = PLAYER_MOVE_PIXEL * cos(g->player->rotate_angle);
-	y = PLAYER_MOVE_PIXEL * sin(g->player->rotate_angle);
-	if (map_has_wall_at(\
-	g, g->player->x_draw_start + x, g->player->y_draw_start + y))
-		return ;
-	if (map_has_wall_at(\
-	g, g->player->x_draw_end + x, g->player->y_draw_end + y))
+	if (calc_x_and_y(g, &x, &y))
 		return ;
 	while (i < PLAYER_SIZE)
 	{
@@ -124,4 +118,28 @@ void	move_back(t_game *g)
 	update_grid(g, x, y);
 	render_player(g);
 	render_vision(g);
+}
+
+bool	calc_x_and_y(t_game *g, int *x, int *y)
+{
+	int	i;
+	int	j;
+	int	a;
+	int	b;
+
+	a = 1;
+	b = 1;
+	while (a <= PLAYER_MOVE_PIXEL)
+	{
+		i = a * cos(g->player->rotate_angle);
+		j = b * sin(g->player->rotate_angle);
+		if (map_has_wall_at(\
+	g, g->player->x_draw_end + i, g->player->y_draw_end + j))
+			return (true);
+		a++;
+		b++;
+	}
+	*x = i;
+	*y = j;
+	return (false);
 }
