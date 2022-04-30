@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:13:30 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 05:46:22 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/30 07:43:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ void	render_floor(t_game *g, int x, int wall_bottom_pixel)
 {
 	while (wall_bottom_pixel < HEIGHT)
 	{
+		if(wall_bottom_pixel < 0 || x < 0)
+		{
+			printf("wall :%d\n",wall_bottom_pixel);
+			printf("x	 :%d\n",x);
+		}
 		g->img.data[to_coord(x, wall_bottom_pixel)] = g->floor_color;
 		wall_bottom_pixel++;
 	}

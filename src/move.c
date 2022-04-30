@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:09:06 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 14:47:22 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/30 14:48:59 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,3 @@ void	move_back(t_game *g)
 	}
 	update_grid(g, x, y);
 }
-
