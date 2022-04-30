@@ -6,7 +6,11 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:09:06 by mhirabay          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2022/04/30 14:48:59 by mhirabay         ###   ########.fr       */
+=======
+/*   Updated: 2022/04/30 08:24:18 by user42           ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
