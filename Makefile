@@ -6,13 +6,14 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/30 08:36:03 by user42           ###   ########.fr        #
+#    Updated: 2022/04/30 08:56:57 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	:= cub3D
 SRCDIR 	:= ./src/
-SRCNAME	:=	main.c \
+SRC_BONUS_DIR 	:= ./src_bonus/
+SRCNAME :=	main.c \
 			move.c \
 			move_direction.c \
 			ray.c \
@@ -45,12 +46,48 @@ SRCNAME	:=	main.c \
 			ray_utils_2.c \
 			init_3.c \
 			move_utils.c
-			
+SRC_NAME_BONUS	:=	main_bonus.c \
+			move_bonus.c \
+			move_direction_bonus.c \
+			ray_bonus.c \
+			ray_utils_bonus.c \
+			cub_utils_bonus.c \
+			debug_bonus.c \
+			render_3d_bonus.c \
+			render_3d_utils_bonus.c \
+			render_3d_utils_2_bonus.c \
+			render_minimap_bonus.c \
+			render_utils_bonus.c \
+			render_rays_bonus.c \
+			error_handling_bonus.c \
+			init_bonus.c \
+			init_2_bonus.c \
+			hooks_bonus.c \
+			look_bonus.c \
+			arg_check_bonus.c \
+			error_util_bonus.c \
+			parser_bonus.c \
+			pars_util_bonus.c \
+			pars_util2_bonus.c \
+			load_texture_bonus.c \
+			pars_color_bonus.c \
+			libft_util_bonus.c \
+			check_elements_bonus.c \
+			map_check_bonus.c \
+			dfs_map_bonus.c\
+			get_map_bonus.c \
+			ray_utils_2_bonus.c \
+			init_3_bonus.c \
+			move_utils_bonus.c
+
 
 SRCS	:= $(addprefix $(SRCDIR), $(SRCNAME))
 OBJSDIR	:= ./obj/
 OBJS 	:= $(addprefix $(OBJSDIR), $(SRCNAME:%.c=%.o))
 
+SRCS_BONUS	:= $(addprefix $(SRC_BONUS_DIR), $(SRC_NAME_BONUS))
+OBJSDIR	:= ./obj/
+OBJS_BONUS 	:= $(addprefix $(OBJSDIR), $(SRC_NAME_BONUS:%.c=%.o))
 CC		:= gcc 
 CFLAGS	:= -Wall -Werror -Wextra #-g -fsanitize=address
 INC		:= -I ./includes
@@ -86,6 +123,8 @@ $(NAME) : $(OBJS)
 $(OBJSDIR)%.o : $(SRCDIR)%.c
 	@if [ ! -d $(OBJSDIR) ]; then mkdir $(OBJSDIR); fi
 	${CC} ${CFLAGS} $(INC) -c $< -o $@
+bonus:
+	
 
 clean:
 	make clean -C lib/gnl
@@ -101,4 +140,4 @@ fclean: clean
 	${RM} ${NAME} 
 re:	fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
