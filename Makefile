@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/30 08:28:55 by user42           ###   ########.fr        #
+#    Updated: 2022/04/30 08:36:03 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCNAME	:=	main.c \
 			get_map.c \
 			ray_utils_2.c \
 			init_3.c \
+			move_utils.c
 			
 
 SRCS	:= $(addprefix $(SRCDIR), $(SRCNAME))

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 15:16:00 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 08:28:01 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/30 08:33:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	calc_wall_info(t_ray *ray, double p_angle, t_wall3d_info *wall_info)
 
 	dist_project_plane = ((WIDTH) / 2) / tan((ANGLE * (M_PI / 180)) / 2);
 	perp_dist = ray->dist * cos(ray->angle - p_angle);
-	if(perp_dist == 0.0)
+	if (perp_dist == 0.0)
 		perp_dist = 0.01;
 	projected_wall_height = ((TILE_SIZE) / perp_dist) * dist_project_plane;
 	wall_top_pixel = (HEIGHT / 2) - (projected_wall_height / 2);

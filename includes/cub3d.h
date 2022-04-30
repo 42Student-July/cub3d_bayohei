@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 06:19:58 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/30 08:35:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ void	move_forward(t_game *g);
 void	move_right(t_game *g);
 void	move_left(t_game *g);
 void	move_back(t_game *g);
+void	update_grid(t_game *g, int x, int y);
 
 // move_direction.c
 void	move_north(t_game *game);
