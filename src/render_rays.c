@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:36:50 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/26 22:07:10 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/30 06:10:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	cast_all_rays(t_game *g)
 	int		i;
 
 	i = 0;
-	ray_angle = g->player->rotate_angle - (FOV_ANGLE / 2);
+	ray_angle = g->player->rotate_angle - (g->fov_angle / 2);
 	while (i < NUM_RAYS)
 	{
 		g->player->ray[i]->angle = ray_angle;
 		cast_ray(g, g->player->ray[i]);
-		ray_angle += FOV_ANGLE / (NUM_RAYS);
+		ray_angle += g->fov_angle / (NUM_RAYS);
 		i++;
 	}
 }

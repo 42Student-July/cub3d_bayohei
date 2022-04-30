@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:00:37 by user42            #+#    #+#             */
-/*   Updated: 2022/04/26 16:03:42 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/30 06:04:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ bool	check_acronym(t_data *d, char *line, t_check *e)
 	if (ft_strncmp(line, "EA ", 3) == 0)
 		return (load_texture(d, line, TEX_EA));
 	if (ft_strncmp(line, "F ", 2) == 0)
-		return (parse_color(d, line, CEIL));
-	if (ft_strncmp(line, "C ", 2) == 0)
 		return (parse_color(d, line, FLOOR));
+	if (ft_strncmp(line, "C ", 2) == 0)
+		return (parse_color(d, line, CEIL));
 	return (false);
 }
 

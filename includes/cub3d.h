@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/27 21:33:18 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/30 06:19:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@
 # define MINIMAP_SCALE 0.2
 # define ROWS 11 
 # define COLS 15
-# define WIDTH COLS * TILE_SIZE
-# define HEIGHT ROWS * TILE_SIZE
-# define FOV_ANGLE (60 * (M_PI / 180))
+# define WIDTH 480
+# define HEIGHT 352
+# define ANGLE 60
 # define NUM_RAYS WIDTH
-# define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 # define FILE_PATH 1
 
 # define NO_PATH "./asset/texture/NO.xpm"
@@ -152,17 +151,17 @@ typedef struct s_grid_dist
 
 typedef struct s_game
 {
+	double		fov_angle;
 	void		*mlx;
 	void		*win;
 	t_img		img;
 	t_player	*player;
 	t_config	*config;
 	t_texture	texture;
-	// TODO: いずれ消す
 	int			floor_color;
 	int			celling_color;
-	int		**map;
-	t_data d;
+	int			**map;
+	t_data		d;
 }	t_game;
 
 // move.c
@@ -258,6 +257,5 @@ void	get_vert_wall_hit(t_game *g, t_ray *ray);
 void	get_horz_step_and_intercept(t_game *g, t_ray *ray);
 void	get_vert_step_and_intercept(t_game *g, t_ray *ray);
 int		*get_data_addr(t_img *i);
-
 
 #endif

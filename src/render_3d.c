@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 15:16:00 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/27 21:15:08 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/30 06:12:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	calc_wall_info(t_ray *ray, double p_angle, t_wall3d_info *wall_info)
 	double	perp_dist;
 	double	dist_project_plane;
 
-	dist_project_plane = ((WIDTH) / 2) / tan(FOV_ANGLE / 2);
+	dist_project_plane = ((WIDTH) / 2) / tan((ANGLE * (M_PI / 180)) / 2);
 	perp_dist = ray->dist * cos(ray->angle - p_angle);
 	projected_wall_height = ((TILE_SIZE) / perp_dist) * dist_project_plane;
 	wall_top_pixel = (HEIGHT / 2) - (projected_wall_height / 2);
