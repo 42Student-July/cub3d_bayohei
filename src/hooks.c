@@ -6,12 +6,13 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:15:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/27 17:36:52 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/04/30 13:48:28 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
+
 int	deal_key(int key_code, t_game *game)
 {
 	printf("key_code = %d\n", key_code);
