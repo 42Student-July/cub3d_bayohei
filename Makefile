@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 13:21:26 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/30 16:18:12 by mhirabay         ###   ########.fr        #
+#    Updated: 2022/04/30 09:36:02 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,7 +134,7 @@ bonus: lib
 
 $(OBJSDIR)%.o : $(SRC_BONUS_DIR)%.c
 	@if [ ! -d $(OBJSDIR) ]; then mkdir $(OBJSDIR); fi
-	${CC} ${CFLAGS} $(INC_BONUS) -c $< -o $@
+	${CC} ${CFLAGS} $(INC) -c $< -o $@
 
 clean:
 	make clean -C lib/gnl
