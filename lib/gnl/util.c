@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   util.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/30 09:32:06 by user42            #+#    #+#             */
+/*   Updated: 2022/04/30 09:33:42 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 void	*xmalloc(size_t size)
@@ -6,6 +18,13 @@ void	*xmalloc(size_t size)
 
 	ret = malloc(size);
 	if (ret == NULL)
-		print_error(MALLOC_ERR);
+		print_error("malloc err");
 	return (ret);
+}
+
+void	print_error(char *err)
+{
+	printf("Error\n");
+	printf("%s\n", err);
+	exit(EXIT_FAILURE);
 }
