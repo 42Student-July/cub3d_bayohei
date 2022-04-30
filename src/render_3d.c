@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 15:16:00 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 07:26:38 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/30 07:38:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ void	render_3dwall(t_game *g, int i, t_wall3d_info w_info)
 	y = w_info.wall_top_pixel;
 	while (y < w_info.wall_bottom_pixel)
 	{
-		tex_offset_y = (y + \
-		(w_info.projected_wall_height / 2) - (HEIGHT / 2)) \
+		tex_offset_y = (y + (w_info.projected_wall_height / 2) - (HEIGHT / 2)) \
 		* (TEXTURE_HEIGHT / (double)w_info.projected_wall_height);
-		if(tex_offset_y < 0  || tex_offset_x < 0 )
+		if (tex_offset_y < 0 || tex_offset_x < 0)
 		{
 			y++;
-			continue;
+			continue ;
 		}
 		color = get_tex_color(g, tex_type, tex_offset_x, tex_offset_y);
 		g->img.data[to_coord(i, y)] = color;
