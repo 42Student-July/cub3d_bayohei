@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 15:16:00 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 08:33:38 by user42           ###   ########.fr       */
+/*   Updated: 2022/05/02 15:31:47 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@ int	get_tex_type(t_ray *ray)
 
 int	get_tex_color(t_game *g, int tex_type, int x, int y)
 {
+	int	conv_x;
+
 	if (tex_type == NO)
 	{
-		return (g->texture.no_img.data[to_coord_tex(x, y)]);
+		conv_x = TEXTURE_WIDTH - x - 1;
+		return (g->texture.no_img.data[to_coord_tex(conv_x, y)]);
 	}
 	else if (tex_type == SO)
 	{
@@ -42,7 +45,8 @@ int	get_tex_color(t_game *g, int tex_type, int x, int y)
 	}
 	else if (tex_type == EA)
 	{
-		return (g->texture.ea_img.data[to_coord_tex(x, y)]);
+		conv_x = TEXTURE_WIDTH - x - 1;
+		return (g->texture.ea_img.data[to_coord_tex(conv_x, y)]);
 	}
 	else if (tex_type == WE)
 	{
