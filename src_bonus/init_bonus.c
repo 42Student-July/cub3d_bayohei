@@ -6,11 +6,11 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 10:28:51 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 16:13:22 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/05/02 15:40:29 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
 void	init(t_game *game)
 {
@@ -45,23 +45,23 @@ void	init_texture(t_game *game)
 	height = TEXTURE_HEIGHT;
 	width = TEXTURE_WIDTH;
 	game->texture.no_img.img = mlx_xpm_file_to_image(\
-	game->mlx, game->d.tex[TEX_NO], &width, &height);
-	if (game->img.img == NULL)
+	game->mlx, game->d.tex[TEX_SO], &width, &height);
+	if (game->texture.no_img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->texture.no_img.data = get_data_addr(&game->texture.no_img);
 	game->texture.so_img.img = mlx_xpm_file_to_image(\
-	game->mlx, game->d.tex[TEX_SO], &width, &height);
-	if (game->img.img == NULL)
+	game->mlx, game->d.tex[TEX_NO], &width, &height);
+	if (game->texture.so_img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->texture.so_img.data = get_data_addr(&game->texture.so_img);
 	game->texture.ea_img.img = mlx_xpm_file_to_image(\
-	game->mlx, game->d.tex[TEX_EA], &width, &height);
-	if (game->img.img == NULL)
+	game->mlx, game->d.tex[TEX_WE], &width, &height);
+	if (game->texture.ea_img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->texture.ea_img.data = get_data_addr(&game->texture.ea_img);
 	game->texture.we_img.img = mlx_xpm_file_to_image(\
-	game->mlx, game->d.tex[TEX_WE], &width, &height);
-	if (game->img.img == NULL)
+	game->mlx, game->d.tex[TEX_EA], &width, &height);
+	if (game->texture.we_img.img == NULL)
 		exit_with_err_msg(MALLOC_ERROR);
 	game->texture.we_img.data = get_data_addr(&game->texture.we_img);
 }
