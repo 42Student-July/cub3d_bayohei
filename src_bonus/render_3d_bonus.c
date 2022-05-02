@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 15:16:00 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/05/02 15:40:41 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/05/02 15:46:41 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ int	get_tex_type(t_ray *ray)
 	if (ray->found_vert_wallhit)
 	{
 		if (ray->is_ray_facing_left)
-			return (EA);
-		else
 			return (WE);
+		else
+			return (EA);
 	}
 	else
 	{
 		if (ray->is_ray_facing_up)
-			return (SO);
-		else
 			return (NO);
+		else
+			return (SO);
 	}
 }
 
@@ -34,23 +34,23 @@ int	get_tex_color(t_game *g, int tex_type, int x, int y)
 {
 	int	conv_x;
 
-	if (tex_type == NO)
+	if (tex_type == SO)
 	{
 		conv_x = TEXTURE_WIDTH - x - 1;
-		return (g->texture.no_img.data[to_coord_tex(conv_x, y)]);
+		return (g->texture.so_img.data[to_coord_tex(conv_x, y)]);
 	}
-	else if (tex_type == SO)
+	else if (tex_type == NO)
 	{
-		return (g->texture.so_img.data[to_coord_tex(x, y)]);
-	}
-	else if (tex_type == EA)
-	{
-		conv_x = TEXTURE_WIDTH - x - 1;
-		return (g->texture.ea_img.data[to_coord_tex(conv_x, y)]);
+		return (g->texture.no_img.data[to_coord_tex(x, y)]);
 	}
 	else if (tex_type == WE)
 	{
-		return (g->texture.we_img.data[to_coord_tex(x, y)]);
+		conv_x = TEXTURE_WIDTH - x - 1;
+		return (g->texture.we_img.data[to_coord_tex(conv_x, y)]);
+	}
+	else if (tex_type == EA)
+	{
+		return (g->texture.ea_img.data[to_coord_tex(x, y)]);
 	}
 	return (YELLOW);
 }
