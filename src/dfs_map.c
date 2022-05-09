@@ -6,11 +6,36 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:03:53 by user42            #+#    #+#             */
-/*   Updated: 2022/05/07 05:28:49 by user42           ###   ########.fr       */
+/*   Updated: 2022/04/26 16:11:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+void	coner_check(int h, int w, int **memo, bool *check)
+{
+	if (w < 1 || h < 1 || memo[h + 1] == NULL || memo[h][w + 1] == END)
+		return ;
+	if (memo[h][w] == OK && memo[h - 1][w] == WALL && memo[h][w - 1] == WALL)
+	{
+		if (memo[h - 1][w - 1] != WALL)
+			*check = false;
+	}
+	if (memo[h][w] == OK && memo[h - 1][w] == WALL && memo[h][w + 1] == WALL)
+	{
+		if (memo[h - 1][w + 1] != WALL)
+			*check = false;
+	}
+	if (memo[h][w] == OK && memo[h + 1][w] == WALL && memo[h][w - 1] == WALL)
+	{
+		if (memo[h + 1][w - 1] != WALL)
+			*check = false;
+	}
+	if (memo[h][w] == OK && memo[h + 1][w] == WALL && memo[h][w + 1] == WALL)
+	{
+		if (memo[h + 1][w + 1] != WALL)
+			*check = false;
+	}
+}
 
 void	dfs(int h, int w, int **memo, bool *check)
 {
@@ -24,6 +49,7 @@ void	dfs(int h, int w, int **memo, bool *check)
 	if (memo[h][w] == WALL || memo[h][w] == OK)
 		return ;
 	memo[h][w] = OK;
+	coner_check(h, w, memo, check);
 	dfs2(h, w, memo, check);
 }
 
