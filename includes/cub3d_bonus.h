@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:09:42 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/04/30 16:16:38 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:16:06 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,10 @@ void	move_right(t_game *g);
 void	move_left(t_game *g);
 void	move_back(t_game *g);
 void	update_grid(t_game *g, int x, int y);
+bool	check_left_player_line(t_game *g, int i, int j);
+bool	check_right_player_line(t_game *g, int i, int j);
+bool	check_top_player_line(t_game *g, int i, int j);
+bool	check_bottom_player_line(t_game *g, int i, int j);
 
 // move_direction.c
 void	move_north(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:03:53 by user42            #+#    #+#             */
-/*   Updated: 2022/04/30 16:13:36 by mhirabay         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:16:51 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	dfs(int h, int w, int **memo, bool *check)
 	if (memo[h][w] == WALL || memo[h][w] == OK)
 		return ;
 	memo[h][w] = OK;
-	coner_check(h, w, memo, check);
 	dfs2(h, w, memo, check);
 }
 

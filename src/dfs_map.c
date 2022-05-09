@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dfs_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:03:53 by user42            #+#    #+#             */
-/*   Updated: 2022/04/26 16:11:08 by user42           ###   ########.fr       */
+/*   Updated: 2022/05/09 14:14:17 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	dfs(int h, int w, int **memo, bool *check)
 	if (memo[h][w] == WALL || memo[h][w] == OK)
 		return ;
 	memo[h][w] = OK;
-	coner_check(h, w, memo, check);
 	dfs2(h, w, memo, check);
 }
 

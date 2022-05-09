@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mhirabay <mhirabay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 15:09:06 by mhirabay          #+#    #+#             */
-/*   Updated: 2022/05/09 06:26:42 by user42           ###   ########.fr       */
+/*   Updated: 2022/05/09 14:14:35 by mhirabay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ bool	is_wall_on_direction(t_game *g, double angle)
 	{
 		i = a * cos(g->player->rotate_angle + angle);
 		j = b * sin(g->player->rotate_angle + angle);
-		if (map_has_wall_at(\
-			g, g->player->x_draw_start + i, g->player->y_draw_start + j))
-			return (true);
-		if (map_has_wall_at(\
-			g, g->player->x_draw_end + i, g->player->y_draw_end + j))
+		if (check_left_player_line(g, i, j) \
+		|| check_right_player_line(g, i, j) \
+		|| check_top_player_line(g, i, j) \
+		|| check_bottom_player_line(g, i, j))
 			return (true);
 		a++;
 		b++;
